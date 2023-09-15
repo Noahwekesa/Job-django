@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     #own pages
     'pages',
     'accounts',
+    'Company',
+    'Resume',
 ]
 
 MIDDLEWARE = [

@@ -2,6 +2,8 @@
 
 
   {% block content %}
+  
+  {% include "nav.html" %}
     <!-- HOME -->
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
       <div class="container">
@@ -22,18 +24,27 @@
         <div class="row">
       
           <div class="col-md-12">
-            <form action="#" class="p-4 border rounded">
+          
+          <!--error message code display-->
+            {% if error_message %}
+   
+            <p>{{ error_message }}</p>
+
+            {% endif %}
+
+            <form action="/user_login/" class="p-4 border rounded">
+              {% csrf_token %}
 
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">Email</label>
-                  <input type="text" id="fname" class="form-control" placeholder="Email address">
+                  <input type="text" id="id_username" class="form-control" placeholder="Email address">
                 </div>
               </div>
               <div class="row form-group mb-4">
                 <div class="col-md-12 mb-3 mb-md-0">
                   <label class="text-black" for="fname">Password</label>
-                  <input type="password" id="fname" class="form-control" placeholder="Password">
+                  <input type="password" id="id_password" class="form-control" placeholder="Password">
                 </div>
               </div>
 
@@ -48,7 +59,10 @@
         </div>
       </div>
     </section>
+    
+    {% include "footer.html" %}
     {% endblock %}
+    
 {% comment %}     
     <footer class="site-footer">
 

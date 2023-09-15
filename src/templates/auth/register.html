@@ -5,6 +5,8 @@
 
 {% block content %}
 
+<!--nav bar-->
+{% include 'nav.html' %}
  <!-- HOME -->
     <section class="section-hero overlay inner-page bg-image" style="background-image: url('{% static 'images/hero_1.jpg'  %}');" id="home-section"> 
       <div class="container">
@@ -12,7 +14,7 @@
           <div class="col-md-7">
             <h1 class="text-white font-weight-bold">Register</h1>
             <div class="custom-breadcrumbs">
-              <a href="#">Home</a> <span class="mx-2 slash">/</span>
+              <a href="{% url 'home' %}">Home</a> <span class="mx-2 slash">/</span>
               <span class="text-white"><strong>Register</strong></span>
             </div>
           </div>
@@ -24,7 +26,6 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-5">
-
 
             <form action="{% url 'register' %}" class="p-4 border rounded" method="POST">
               
@@ -47,8 +48,8 @@
       <!--Emial field-->
       <div class="row form-group">
         <div class="col-md-12 mb-3 mb-md-0">
-          <label class="text-black" for="{{ user_form.email.id_for_label }}">Email</label>
-          <input type="text" id="{{ user_form.email.id_for_label }}" name="email" class="form-control" placeholder="Email address">
+          <label class="text-black" for="mail">Email</label>
+          <input type="text" id="email" name="email" class="form-control" placeholder="Email address">
         </div>
       </div> 
 
@@ -58,8 +59,8 @@
         <label for="user_type">User Type</label>
        <select name="user_type" class="border rounded" id="user-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select User Type">
         <option></option>
-            <option>Job Seeker</option>
-          <option>Company</option>
+            <option value="Job Seeker">Job Seeker</option>
+          <option value="Company">Company</option>
         </select> 
       </div>
 
@@ -74,7 +75,7 @@
         <!--password field-->
       <div class="row form-group mb-4">
         <div class="col-md-12 mb-3 mb-md-0">
-          <label class="text-black" for="{{ user_form.password.id_for_label }}">Password</label>
+          <label class="text-black" for="{{ user_form.password.id_for_label }}">Re-Password</label>
           <input type="password" id="{{ user_form.password.id_for_label }}" name="{{ user_form.password.name }}" class="form-control" placeholder="Password">
           
         </div>

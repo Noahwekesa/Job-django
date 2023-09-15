@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 
+
 # class CustomUser(AbstractUser):
 #     USER_TYPES = (
 #         ('job_seeker', 'Job Seeker'),
@@ -17,15 +18,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 #     def __str__(self):
 #         return self.name
 
-# class Company(models.Model):
-#     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=255)
-#     email = models.EmailField()
-#     description = models.TextField()
-#     logo = models.ImageField(upload_to='logos/')
 
-#     def __str__(self):
-#         return self.name
 class CustomUser(AbstractUser):
     USER_TYPES = (
         ('job_seeker', 'Job Seeker'),
