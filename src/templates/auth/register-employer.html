@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+{% include "nav.html" %}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-7">
+         <h1 class="text-white font-weight-bold">Register</h1>
+         <div class="custom-breadcrumbs">
+           <a href="#">Home</a> <span class="mx-2 slash">/</span>
+           <span class="text-white"><strong>Register</strong></span>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <section class="site-section">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12 mb-5">
+
+         
+         <form action="." class="p-4  border rounded-3" method="post">
+           {% csrf_token %}
+
+           <div class="row form-group">
+               <div class="col-md-12 mb-3 mb-md-0">
+                 <label class="text-black" for="floatinginput">Email Address</label>
+                   {% render_field form.email class="form-control" %}
+               </div>
+             </div>
+
+             <div class="row form-group">
+               <div class="col-md-12 mb-3 mb-md-0">
+                 <label class="text-black" for="password">Enter Password</label>
+                   {% render_field form.password1 class="form-control" %}
+               </div>
+             </div>
+
+             <div class="row form-group">
+               <div class="col-md-12 mb-3 mb-md-0">
+                 <label class="text-black" for="password2">Confirm Password</label>
+                   {% render_field form.password2 class="form-control" %}
+               </div>
+             </div>
+
+             <div class="row form-group">
+               <div class="col-md-12">
+                 <input type="submit" value="register" class="btn px-4 btn-primary text-white">
+               </div>
+             </div>
+
+             <small class="text-black">Already have an account? <a href="{% url 'login_page' %}">Login in</a></small>
+           </form>
+         </div>
+     
+       </div>
+     </div>
+   </section>
+
+{% endblock%}

@@ -1,0 +1,58 @@
+
+<!-- NAVBAR -->
+<header class="site-navbar mt-3">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="site-logo col-6 fw-bold"><a href="{% url 'index' %}">JobBoard</a></div>
+  
+        <nav class="mx-auto site-navigation">
+          <ul style="margin-right: -500px" class="site-menu js-clone-nav d-inline d-xl-block ml-0 pl-0">
+            <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="navbar-item">Dashboard</a>
+            {% comment %} <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  {% endcomment %}
+        {% endif %}
+
+
+        {% comment %} <li><a href="{% url 'workers' %}">Workers</a></li> 
+           <li><a href="{% url 'companies' %}">Companies</a></li> {% endcomment %}
+  
+           {% if user.is_authenticated %} 
+              {% if user.type == "employer" %}
+                <li class="d-lg-inline"><a href="{% url 'post_job' %}"><span class="mr-2">+</span> Post a Job</a></li>
+              {% endif %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ user.username }}
+                </a>
+                {% comment %} <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'public_profile' user.id %}">Public profile</a> 
+                  <a class="dropdown-item" href="{% url 'update_profile' user.id %}">Update profile</a> 
+                  {% if user.type == "Worker" %}
+                    <a class="dropdown-item" href="{% url 'saved_jobs' user.id %}">Saved Jobs</a>
+                  {% endif %}
+                  {% if user.type == "employer" %}
+                    <a class="dropdown-item" href="{% url 'show_applicants' user.id %}">Show Applicants</a>
+                  {% endif %}
+                  <div class="dropdown-divider"></div> {% endcomment %}
+                 {% comment %} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div> {% endcomment %}
+              </li>
+          {% endif %} 
+          {% if user.is_authenticated %}
+              <p>sign out</p>
+          {% else %}
+              <li class="d-lg-inline btn-primary btn"><a href="{% url 'login_page' %}">Log In</a></li>
+              <li class="d-lg-inline btn-primary btn"><a href="#">Register</a></li> 
+              {% endif %}
+          </ul>
+        </nav>
+
+        
+      </div>
+    </div>
+  </header>
+  
