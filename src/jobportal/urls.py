@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import index, about_page, contact_page, login_page, jobseeker_signup, employer_signup
+from users.views import index, about_page, contact_page, login_page, jobseeker_signup, employer_signup, logout_page
 from django.contrib.auth import views as views
 from dashboard.views import dashboard
 
@@ -28,5 +28,6 @@ urlpatterns = [
     path('jobseeker_signup/', jobseeker_signup, name='jobseeker_signup'),
     path('employer_signup/', employer_signup, name='employer_signup'),
     path('login/', login_page, name='login_page'),
+    path('login_out/', logout_page, name='logout_page'),
     path ('dashboard/', dashboard, name='dashboard'),
 ]

@@ -1,4 +1,4 @@
-
+{% load static %}
 <!-- NAVBAR -->
 <header class="site-navbar mt-3">
     <div class="container-fluid">
@@ -28,7 +28,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ user.username }}
                 </a>
-                {% comment %} <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">{% comment %} 
                   <a class="dropdown-item" href="{% url 'public_profile' user.id %}">Public profile</a> 
                   <a class="dropdown-item" href="{% url 'update_profile' user.id %}">Update profile</a> 
                   {% if user.type == "Worker" %}
@@ -36,17 +36,45 @@
                   {% endif %}
                   {% if user.type == "employer" %}
                     <a class="dropdown-item" href="{% url 'show_applicants' user.id %}">Show Applicants</a>
-                  {% endif %}
-                  <div class="dropdown-divider"></div> {% endcomment %}
-                 {% comment %} <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                </div> {% endcomment %}
+                  {% endif %}{% endcomment %}
+                  <div class="dropdown-divider"></div> 
+                <a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a>
+                </div>
               </li>
           {% endif %} 
+
+
+          <!--login and registration links-->
           {% if user.is_authenticated %}
-              <p>sign out</p>
+
+          
           {% else %}
-              <li class="d-lg-inline btn-primary btn"><a href="{% url 'login_page' %}">Log In</a></li>
-              <li class="d-lg-inline btn-primary btn"><a href="#">Register</a></li> 
+              <!--Job Seeker dropdown menu-->
+              <li class="nav-item">
+                <a class="dropdown-toggle" href="#" id="jobSeekerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="text-white">
+                    Job Seeker
+                  </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="jobSeekerDropdown">
+                  <a class="dropdown-item" href="{% url 'login_page' %}">Log In</a>
+                  <a class="dropdown-item" href="#">Create Your Profile</a>
+                </div>
+              </li>
+
+              <!--Employer dropdown menu-->
+              <li class="nav-item">
+                <a class="dropdown-toggle" href="#" id="EmployerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="text-white">
+                    Employer
+                  </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="EmployerDropdown">
+                  <a class="dropdown-item" href="{% url 'login_page' %}">Log In</a>
+                  <a class="dropdown-item" href="#">Create Your Profile</a>
+                </div>
+              </li>
+              
               {% endif %}
           </ul>
         </nav>

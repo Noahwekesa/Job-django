@@ -1,21 +1,47 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
 {% include "nav.html" %}
 
-<h1 class="title">Dashboard</h1>
-{%  if userprofile.is_employer %}
-<h2 class="subtitle">Jobs</h2>
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        {% comment %} <h1 class="text-white font-weight-bold">Log In</h1> {% endcomment %}
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>Dashboard</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% for job in request.user.jobs.all  %}
-<div class="job">
-    {{  job.title }}
-</div>
-{% empty %}
-<p>You dont have job yet...</p>
-{% endfor %}
-{% else %}
-        is Jobseeker
-{% endif %}
+
+{% if request.user.is_jobseeker %}
+  <section>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">
+            Welcome to JobSeeker Dashboard
+            </h1>
+            <p class="col-md-8 fs-4"></p>
+        </div>
+    </div>
+  </section>
+  {% elif request.user.is_employer %}
+  <section>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">
+            Welcome to employer Dashboard
+            </h1>
+            <p class="col-md-8 fs-4"></p>
+        </div>
+    </div>
+  </section>
+  {% endif %}
 {% endblock %}
