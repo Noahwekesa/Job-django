@@ -19,7 +19,7 @@ from django.urls import path
 from users.views import index, about_page, contact_page, login_page, jobseeker_signup, employer_signup, logout_page
 from django.contrib.auth import views as views
 from dashboard.views import dashboard
-
+from company.views import update_company, view_company
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -30,4 +30,6 @@ urlpatterns = [
     path('login/', login_page, name='login_page'),
     path('login_out/', logout_page, name='logout_page'),
     path ('dashboard/', dashboard, name='dashboard'),
+    path ('update_company/', update_company, name='update_company'),
+    path ('view_company/<int:pk>/', view_company, name='view_company'),
 ]

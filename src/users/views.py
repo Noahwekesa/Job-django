@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import UserRegistrationForm
 from django.contrib.auth import login, authenticate, logout 
 from resume.models import Resume
-from company.models import company
+from company.models import Company
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -45,12 +45,12 @@ def employer_signup(request):
             var.is_employer = True
             var.username = var.email
             var.save()
-            company.objects.create(user=var)
+            Company.objects.create(user=var)
             messages.info(request, 'Your account has been created successfully. Please login to continue.')
             return redirect('login_page')
         else:
             messages.error(request, 'Please correct the error below.')
-            return redirect('register-employer')
+            return redirect('employer_signup')
     else:
         form = UserRegistrationForm()
         context = {'form': form}

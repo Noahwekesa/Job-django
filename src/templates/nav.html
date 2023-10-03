@@ -11,14 +11,16 @@
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
 
+            <li><a href="#" >Workers</a></li> 
+            <li><a href="#">Companies</a></li> 
+
             {% if request.user.is_authenticated %}
             <a href="{% url 'dashboard' %}" class="navbar-item">Dashboard</a>
             {% comment %} <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  {% endcomment %}
         {% endif %}
 
 
-        {% comment %} <li><a href="{% url 'workers' %}">Workers</a></li> 
-           <li><a href="{% url 'companies' %}">Companies</a></li> {% endcomment %}
+      
   
            {% if user.is_authenticated %} 
               {% if user.type == "employer" %}
@@ -58,7 +60,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="jobSeekerDropdown">
                   <a class="dropdown-item" href="{% url 'login_page' %}">Log In</a>
-                  <a class="dropdown-item" href="#">Create Your Profile</a>
+                  <a class="dropdown-item" href="{% url 'jobseeker_signup' %}">Create Your Profile</a>
                 </div>
               </li>
 
@@ -71,7 +73,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="EmployerDropdown">
                   <a class="dropdown-item" href="{% url 'login_page' %}">Log In</a>
-                  <a class="dropdown-item" href="#">Create Your Profile</a>
+                  <a class="dropdown-item" href="{% url 'employer_signup'%}">Create Your Profile</a>
                 </div>
               </li>
               

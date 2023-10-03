@@ -215,7 +215,7 @@ h1, h2, h3, h4 {
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background: rgba($primary, .9);
+			background: rgb(0, 0, 0.5);
 			z-index: 1;
 		}
 		> .container {
@@ -1061,7 +1061,7 @@ h1, h2, h3, h4 {
 .site-footer {
 	padding: 7rem 0;
 	position: relative;
-	background: #555;
+	background: #000;
 	// margin-top: 10rem;
 
 	@include media-breakpoint-down(md) {
