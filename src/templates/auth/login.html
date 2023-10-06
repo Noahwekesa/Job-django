@@ -1,9 +1,10 @@
-{ {% extends "base.html" %}}
+{% extends "base.html" %}
 
+{% load static %}
 {% block content %}
 {% include "nav.html" %}
     <!-- HOME -->
-    <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg' );" id="home-section">
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg'  %});" id="home-section">
       <div class="container">
         <div class="row">
           <div class="col-md-7">

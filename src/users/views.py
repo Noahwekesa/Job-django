@@ -26,7 +26,7 @@ def jobseeker_signup(request):
             var.save()
             Resume.objects.create(user=var)
             messages.info(request, 'Your account has been created successfully. Please login to continue.')
-            return redirect('login')
+            return redirect('login_page')
         else:
             messages.error(request, 'Please correct the error below.')
             return redirect('jobseeker_signup')

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load widget_tweaks %}
 {% block content %}
 {% include "nav.html" %}
     <!-- HOME -->
@@ -22,141 +23,61 @@
   
     <section class="site-section">
       <div class="container">
-  {% comment %} 
-        <div class="row align-items-center mb-5">
-          <div class="col-lg-8 mb-4 mb-lg-0">
-            <div class="d-flex align-items-center">
-              <div>
-                <h2>Post A Job</h2>
-              </div>
-            </div>
-          </div>
-         
-        </div>
-        <div class="row mb-5">
-          <div class="col-lg-12">
-
-
-
-            <form class="p-4 p-md-5 border rounded" method="post">
-
-              {% csrf_token %}
-
-              <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
-              
-              <div class="form-group">
-                <label for="company-website-tw d-block">Upload Featured Image</label> <br>
-                <label class="btn btn-primary btn-md btn-file">
-                  Browse File<input type="file" hidden>
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" placeholder="you@yourdomain.com">
-              </div>
-              <div class="form-group">
-                <label for="job-title">Job Title</label>
-                <input type="text" class="form-control" id="job-title" placeholder="Product Designer">
-              </div>
-              <div class="form-group">
-                <label for="job-location">Location</label>
-                <input type="text" class="form-control" id="job-location" placeholder="e.g. New York">
-              </div>
-
-              <div class="form-group">
-                <label for="job-region">Job Region</label>
-                <select class="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
-                      <option>Anywhere</option>
-                      <option>San Francisco</option>
-                      <option>Palo Alto</option>
-                      <option>New York</option>
-                      <option>Manhattan</option>
-                      <option>Ontario</option>
-                      <option>Toronto</option>
-                      <option>Kansas</option>
-                      <option>Mountain View</option>
-                    </select>
-              </div>
-
-              <div class="form-group">
-                <label for="job-type">Job Type</label>
-                <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
-                  <option>Part Time</option>
-                  <option>Full Time</option>
-                </select>
-              </div>
-
-
-              <div class="form-group">
-                <label for="job-description">Job Description</label>
-                <div class="editor" id="editor-1">
-                  <p>Write Job Description!</p>
-                </div>
-              </div> {% endcomment %}
 
 
               <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
+
+
+              <form class="p-4 p-md-5 border rounded" method="POST">
+
+                {% csrf_token %}
+
               <div class="form-group">
                 <label for="company-name">Company Name</label>
-                <input type="text" class="form-control" id="company-name" placeholder="e.g. New York">
+              {% render_field form.name class="form-control"  %}
+              </div> 
+
+              <div class="form-group">
+                <label for="company-tagline">Company establishe Year</label>
+                {% render_field form.est_date class="form-control" %}
               </div>
 
               <div class="form-group">
-                <label for="company-tagline">Tagline (Optional)</label>
-                <input type="text" class="form-control" id="company-tagline" placeholder="e.g. New York">
-              </div>
-
-              <div class="form-group">
-                <label for="job-description">Company Description (Optional)</label>
-                <div class="editor" id="editor-2">
-                  <p>Description</p>
+                <label for="description">Company Description</label>
+                {% render_field form.description class="form-control" placeholder="Description"%}
                 </div>
-              </div>
+              
               
               <div class="form-group">
                 <label for="company-website">Website (Optional)</label>
-                <input type="text" class="form-control" id="company-website" placeholder="https://">
+                {% render_field form.website placeholder="https://" %}
               </div>
 
               <div class="form-group">
-                <label for="company-website-fb">Facebook Username (Optional)</label>
-                <input type="text" class="form-control" id="company-website-fb" placeholder="companyname">
+                <label for="company-fb">Facebook Username (Optional)</label>
+                {% render_field form.fb_name class="form-control" placeholder="Facebookname"  %}
               </div>
 
               <div class="form-group">
                 <label for="company-website-tw">Twitter Username (Optional)</label>
-                <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname">
+                <input type="text" class="form-control" placeholder="@Twittername">
               </div>
-              <div class="form-group">
-                <label for="company-website-tw">Linkedin Username (Optional)</label>
-                <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">
-              </div>
-
+          
               <div class="form-group">
                 <label for="company-website-tw d-block">Upload Logo</label> <br>
-                <label class="btn btn-primary btn-md btn-file">
-                  Browse File<input type="file" hidden>
-                </label>
+                {% render_field form.logo class="btn btn-primary btn-md btn-file" %}
               </div>
-
-            </form>
+              
+              <div>
+            <button  type="submit" class="btn  btn-success btn-md">Submit</button>
+            </div>
+            </div>
+           
+          </form>
           </div>
 
          
         </div>
-        <div class="row align-items-center mb-5">
-          
-          <div class="col-lg-4 ml-auto">
-            <div class="row">
-             
-              <div class="col-6">
-                <a href="#" class="btn btn-block btn-success btn-md" style="    margin-left: 200px;">Save Job</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
 {% endblock %}

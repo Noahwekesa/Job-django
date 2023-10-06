@@ -9,6 +9,7 @@ class User(AbstractUser):
     has_resume = models.BooleanField(default=False)
     has_company = models.BooleanField(default=False)
 
+
 # GENDER_MALE = 'male'
 # GENDER_FEMALE = 'Female'
 # GENDER_CHOICES = (
