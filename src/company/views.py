@@ -5,17 +5,20 @@ from users.models import User
 from .form import UpdateCompanyForm
 # update company
 def update_company(request):
+    if request.user.is_jobseeker:
+        messages.error(request, 'You are not authorized to view this page.')
+        return redirect('dashboard')
     company = Company.objects.get(user=request.user)
     if request.method == 'POST':
         form = UpdateCompanyForm(request.POST, instance=company) 
         if form.is_valid():
             var = form.save(commit=False)
             form.save()
-            user = User.objects.get(id=request.user)
+            user = User.objects.get(id=request.user.id)
             user.has_company = True
             var.save()
             user.save()
-            messages.success(request, 'Your company has been updated!. You can now add jobs.')
+            messages.success(request, 'Your company information has been updated!')
             return redirect('dashboard')
         else:
             messages.error(request, 'Please correct the error below.')

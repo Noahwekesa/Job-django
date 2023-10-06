@@ -10,7 +10,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        {% comment %} <h1 class="text-white font-weight-bold">Log In</h1> {% endcomment %}
         <div class="custom-breadcrumbs">
           <a href="#">Home</a> <span class="mx-2 slash">/</span>
           <span class="text-white"><strong>Dashboard</strong></span>
@@ -20,8 +19,22 @@
   </div>
 </section>
 
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}}">
+  <b>{{ message }}</b>
+</div>
+{% endfor %}
+{% endif %}
+
 
 {% if request.user.is_jobseeker %}
+{% if not request.user.has_resume %}
+<div class="alert alert-danger text-center py-4" role="alert">
+<b>You have not created any company. Click here to create one <a href="{% url "update_company"%}">Here</a>.</b>
+</div>
+{% else %}
+{% endif %}
 
   <section>
     <div class="p-5 mb-4 bg-light rounded-3">
@@ -38,6 +51,7 @@
 <div class="alert alert-danger text-center py-4" role="alert">
 <b>You have not created any company. Click here to create one <a href="{% url "update_company"%}">Here</a>.</b>
 </div>
+{% else %}
 {% endif %}
   </div>
   <section>
@@ -51,4 +65,7 @@
     </div>
   </section>
   {% endif %}
+
+  {% include "footer.html" %}
 {% endblock %}
+
