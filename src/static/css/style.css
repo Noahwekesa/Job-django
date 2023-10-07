@@ -1293,7 +1293,7 @@ h1, h2, h3, h4 {
       padding: 2rem 0; } }
   .site-footer.slanted-footer:before {
     content: "";
-    background: #001f42;
+    background: #000;
     height: 200px;
     -webkit-transform: skewY(-5deg);
     -ms-transform: skewY(-5deg);

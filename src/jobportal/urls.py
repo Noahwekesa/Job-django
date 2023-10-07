@@ -20,6 +20,10 @@ from users.views import index, about_page, contact_page, login_page, jobseeker_s
 from django.contrib.auth import views as views
 from dashboard.views import dashboard
 from company.views import update_company, view_company
+from resume.views import update_profile, view_profile
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -32,4 +36,6 @@ urlpatterns = [
     path ('dashboard/', dashboard, name='dashboard'),
     path ('update_company/', update_company, name='update_company'),
     path ('view_company/<int:pk>/', view_company, name='view_company'),
+    path ('create_profile/', update_profile, name='update_profile'),
+    path ('view_profile/<int:pk>/', view_profile, name='view_profile'),
 ]

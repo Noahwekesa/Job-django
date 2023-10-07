@@ -131,7 +131,15 @@ h1, h2, h3, h4 {
 	  		}
 	  	}
 	  }
-	  .btn-primary {
+.btn-primary {
+		padding: 10px 25px;
+		font-weight: 500;
+		background: transparent;
+		outline: none !important;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		position: relative;
+		display: inline-block;
 	  }
 	  .btn-white {
 	  	background: $white;

@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'resume',
     'company',
     'dashboard',
-    'widget_tweaks'
+    'widget_tweaks',
+    'job',
 ]
 #logout
 LOGOUT_REDIRECT_URL = 'index'

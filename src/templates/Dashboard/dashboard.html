@@ -31,7 +31,7 @@
 {% if request.user.is_jobseeker %}
 {% if not request.user.has_resume %}
 <div class="alert alert-danger text-center py-4" role="alert">
-<b>You have not created any company. Click here to create one <a href="{% url "update_company"%}">Here</a>.</b>
+<b>You dont have a Resume on your profile. Click <a href="{% url "update_company"%}"> here</a> to add one .</b>
 </div>
 {% else %}
 {% endif %}
@@ -46,10 +46,11 @@
         </div>
     </div>
   </section>
+
   {% elif request.user.is_employer %}
   {% if not request.user.has_company %}
 <div class="alert alert-danger text-center py-4" role="alert">
-<b>You have not created any company. Click here to create one <a href="{% url "update_company"%}">Here</a>.</b>
+<b>You have not created any company. Click  <a href="{% url "update_company"%}">Here</a> to create one.</b>
 </div>
 {% else %}
 {% endif %}

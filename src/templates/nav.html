@@ -37,7 +37,7 @@
                   <!--if user is JobSeeker, show this-->
                   {% if user.is_jobseeker %}
                   <a class="dropdown-item" href="#">Public profile</a> 
-                  <a class="dropdown-item" href="#">Update profile</a> 
+                  <a class="dropdown-item" href="{% url 'update_profile' %}">Update profile</a> 
                  
                     <a class="dropdown-item" href="#">Saved Jobs</a>
                   {% endif %}
