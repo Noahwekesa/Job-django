@@ -24,7 +24,7 @@
            {% if user.is_authenticated %} 
               {% if user.has_company %}
 
-                <li class="d-lg-inline border p-2"><a href="#"><span class="mr-2">+</span> Post a Job</a></li>
+                <li class="d-lg-inline border p-2"><a href="{% url 'post-job' %}"><span class="mr-2">+</span> Post a Job</a></li>
               {% endif %}
 
               <!--user dropdown menu-->
@@ -36,21 +36,21 @@
 
                   <!--if user is JobSeeker, show this-->
                   {% if user.is_jobseeker %}
-                  <a class="dropdown-item" href="#">Public profile</a> 
-                  <a class="dropdown-item" href="{% url 'update_profile' %}">Update profile</a> 
+                  <a class="dropdown-item" id="drop" href="#">Public profile</a> 
+                  <a class="dropdown-item" href="{% url 'update_profile' %}" id="drop">Update profile</a> 
                  
-                    <a class="dropdown-item" href="#">Saved Jobs</a>
+                    <a class="dropdown-item" href="#" id="drop">Saved Jobs</a>
                   {% endif %}
 
                   <!--if user is employer, show this-->
                   {% if user.is_employer %}
-                    <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
-                    <a class="dropdown-item" href="#">Show Applicants</a>
-                    <a class="dropdown-item" href="#">Company Public Profile</a>
-                    <a class="dropdown-item" href="{% url "update_company" %}" >Edit Company Details </a>
+                    <a class="dropdown-item" href="{% url 'dashboard' %}" id="drop">Dashboard</a>
+                    <a class="dropdown-item" href="#" id="drop">Show Applicants</a>
+                    <a class="dropdown-item" href="#" id="drop">Company Public Profile</a>
+                    <a class="dropdown-item" href="{% url "update_company" %}" id="drop">Edit Company Details </a>
                   {% endif %}
                   <div class="dropdown-divider"></div> 
-                <a class="dropdown-item" href="{% url 'logout_page' %}">Logout</a>
+                <a class="dropdown-item" href="{% url 'logout_page' %}" id="drop">Logout</a>
                 </div>
               </li>
           {% endif %} 
@@ -69,8 +69,8 @@
       
                 </a>
                 <div class="dropdown-menu" aria-labelledby="jobSeekerDropdown">
-                  <a class="dropdown-item" href="{% url 'login_page' %}">Log In</a>
-                  <a class="dropdown-item" href="{% url 'jobseeker_signup' %}">Create Your Profile</a>
+                  <a class="dropdown-item" href="{% url 'login_page' %}" id="drop">Log In</a>
+                  <a class="dropdown-item" href="{% url 'jobseeker_signup' %}" id="drop">Create Your Profile</a>
                 </div>
               </li>
 
@@ -82,8 +82,8 @@
         
                 </a>
                 <div class="dropdown-menu" aria-labelledby="EmployerDropdown">
-                  <a class="dropdown-item" href="{% url 'login_page' %}">Log In</a>
-                  <a class="dropdown-item" href="{% url 'employer_signup'%}">Create Your Profile</a>
+                  <a class="dropdown-item" href="{% url 'login_page' %}" id="drop">Log In</a>
+                  <a class="dropdown-item" href="{% url 'employer_signup'%}" id="drop">Create Your Profile</a>
                 </div>
               </li>
               

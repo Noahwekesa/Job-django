@@ -43,3 +43,8 @@
   .custom-btn:active {
     top: 2px;
   } */
+  .site-navbar .site-navigation .site-menu #drop:hover {
+    /* Add your hover styles here */
+    color: #FFFFFF; /* Change the text color on hover */
+    background-color: #277F6A; /* Change the background color on hover */
+}

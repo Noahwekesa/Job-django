@@ -223,7 +223,7 @@ h1, h2, h3, h4 {
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background: rgb(0, 0, 0.5);
+			background: rgb(39, 127, 106);
 			z-index: 1;
 		}
 		> .container {
@@ -610,7 +610,7 @@ h1, h2, h3, h4 {
 			a {
 				border-radius: 5px;
 				display: inline-block;
-				background: rgba($white, .2);
+				background: #277F6A;
 				border: 2px solid $white;
 				color: $white;
 				padding: .2rem .7rem;
@@ -1069,7 +1069,7 @@ h1, h2, h3, h4 {
 .site-footer {
 	padding: 7rem 0;
 	position: relative;
-	background: #000;
+	background: #1a1919 !important;
 	// margin-top: 10rem;
 
 	@include media-breakpoint-down(md) {

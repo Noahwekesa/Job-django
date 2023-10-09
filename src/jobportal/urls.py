@@ -21,7 +21,7 @@ from django.contrib.auth import views as views
 from dashboard.views import dashboard
 from company.views import update_company, view_company
 from resume.views import update_profile, view_profile
-
+from job.views import create_job, update_job, job_listing
 
 
 urlpatterns = [
@@ -38,4 +38,7 @@ urlpatterns = [
     path ('view_company/<int:pk>/', view_company, name='view_company'),
     path ('create_profile/', update_profile, name='update_profile'),
     path ('view_profile/<int:pk>/', view_profile, name='view_profile'),
+    path ('create_job/', create_job, name='post-job'),
+    path ('update_job/<int:pk>/', update_job, name='update_job'),
+    path ('job_listing/', job_listing, name='job_listing'),
 ]

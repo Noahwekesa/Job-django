@@ -5,28 +5,30 @@ from .form import CreateJobForm, UpdateJobForm
 
 # Create your views here.
 def create_job(request):
-    if request.user.is_jobseeker:
-        messages.error(request, 'You are not authorized to view this page.')
-        return redirect('dashboard')
-    if request.method == 'POST':
-        form = CreateJobForm(request.POST)
-        if form.is_valid():
-            var = form.save(commit=False)
-            var.user = request.user
-            var.company = request.user.company
-            var.save()
-            messages.success(request, 'Job created successfully.')
-            return redirect('dashboard')
+    if request.user.is_employer and request.user.has_company:
+        if request.method == 'POST':
+            form = CreateJobForm(request.POST)
+            if form.is_valid():
+                var = form.save(commit=False)
+                var.user = request.user
+                var.company = request.user.company
+                var.save()
+                messages.success(request, 'Job created successfully.')
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'Something went wrong.')
+                return redirect('post-job')
         else:
-            messages.error(request, 'Something went wrong.')
-            return redirect('dashboard')
+            form = CreateJobForm()
+            context = {'form': form}
+            return render(request, 'job/post-job.html', context)
     else:
-        form = CreateJobForm()
-        return render(request, 'job/create_job.html', {'form': form})
-    
+        messages.error(request, 'You need to create a company first.')
+        return redirect('create_company')
+        
 
 def update_job(request, pk):
-    Job = Job.objects.get(pk=pk)
+    job = Job.objects.get(pk=pk)
     if request.method == 'POST':
         form = UpdateJobForm(request.POST)
         if form.is_valid():
@@ -37,5 +39,12 @@ def update_job(request, pk):
             messages.error(request, 'Something went wrong.')
             return redirect('dashboard')
     else:
-        form = UpdateJobForm()
-        return render(request, 'job/update_job.html', {'form': form})
+        form = UpdateJobForm(insatance=job)
+        context = {'form': form}
+        return render(request, 'job/update_job.html', context)
+
+
+def job_listing(request):
+    jobs = Job.objects.filter(is_available=True)
+    context = {'jobs': jobs}
+    return render(request, 'job/job_listing.html', context)
