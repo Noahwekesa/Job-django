@@ -47,7 +47,7 @@
 
                     <p class="card-text">{{ job.salary|intcomma}}</p>
                     <p class="card-text">Posted by: {{job.company}}</p>
-                    <a href="#" class="btn btn-primary btn-sm">View Details</a>
+                    <a href="{%  url 'job-details' job.pk %}" class="btn btn-primary btn-sm">View Details</a>
                 </div>
                 <div class="card-footer">
                     <small class="text-mute">Created {{ job.timestamp|naturaltime}}</small>

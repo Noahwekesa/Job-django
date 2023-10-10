@@ -12,10 +12,6 @@ class User(AbstractUser):
 
 # GENDER_MALE = 'male'
 # GENDER_FEMALE = 'Female'
-# GENDER_CHOICES = (
-#     (GENDER_MALE,  'male'),
-#     (GENDER_FEMALE, 'female')
-#     )
 
 # STATUS_PENDING = 'pending'
 # STATUS_APPROVED = 'approved'
