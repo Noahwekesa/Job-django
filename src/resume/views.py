@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Resume
 from users.models import User
@@ -27,7 +27,12 @@ def update_profile(request):
         context = {'form': form}
         return render(request, 'jobseekers/update_profile.html', context)  
     
-def view_profile(request, pk):
-    resume = Resume.objects.get(pk=pk)
-    contest = {'resume': resume}
-    return render(request, 'Jobseeker/view_profile.html', contest)
+# def view_profile(request, pk):
+#     resume = Resume.objects.get(pk=pk)
+#     context = {'resume': resume}
+#     return render(request, 'jobseeker/view_profile.html', context)
+def view_profile(request):
+        if request.user.is_authenticated:
+            user_profile = get_object_or_404(Resume, user=request.user)
+            context = {'resume': user_profile}
+            return render(request, 'jobseekers/view_profile.html', context)

@@ -143,3 +143,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
+
+#strore images folder for user profile and cv
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

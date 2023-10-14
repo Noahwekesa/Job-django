@@ -63,6 +63,7 @@ def login_page(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
+        #if user is authenticated open dashboard
         user = authenticate(request, username=email, password=password)
         if user is not None and user.is_active:
             login(request, user)

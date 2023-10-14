@@ -290,7 +290,7 @@
 
 
 
-    <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
+    <section class="py-5 bg-image overlay-primary fixed overlay">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-8">
@@ -322,26 +322,26 @@
             <img src="{% static 'images/logo_mailchimp.svg' %}" alt="Image" class="img-fluid logo-1">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_paypal.svg" alt="Image" class="img-fluid logo-2">
+            <img src="{% static 'images/logo_paypal.svg' %}" alt="Image" class="img-fluid logo-2">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_stripe.svg" alt="Image" class="img-fluid logo-3">
+            <img src="{% static 'images/logo_stripe.svg' %}" alt="Image" class="img-fluid logo-3">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_visa.svg" alt="Image" class="img-fluid logo-4">
+            <img src="{% static 'images/logo_visa.svg' %}" alt="Image" class="img-fluid logo-4">
           </div>
 
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_apple.svg" alt="Image" class="img-fluid logo-5">
+            <img src="{% static 'images/logo_apple.svg' %}" alt="Image" class="img-fluid logo-5">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_tinder.svg" alt="Image" class="img-fluid logo-6">
+            <img src="{% static 'images/logo_tinder.svg' %}" alt="Image" class="img-fluid logo-6">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_sony.svg" alt="Image" class="img-fluid logo-7">
+            <img src="{% static 'images/logo_sony.svg' %}" alt="Image" class="img-fluid logo-7">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_airbnb.svg" alt="Image" class="img-fluid logo-8">
+            <img src="{% static 'images/logo_airbnb.svg' %}" alt="Image" class="img-fluid logo-8">
           </div>
         </div>
       </div>
@@ -374,10 +374,10 @@
                   <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
                   <p><cite> &mdash; Chris Peters, @Google</cite></p>
                 </blockquote>
-              </div>
+              </div>{% comment %} 
               <div class="col-lg-6 align-self-end text-center text-lg-right">
-                {% comment %} <img src="{% static 'images/person_transparent.png' %}" alt="Image" class="img-fluid mb-0"> {% endcomment %}
-              </div>
+                <img src="{% static 'images/person_transparent.png' %}" alt="Image" class="img-fluid mb-0">
+              </div> {% endcomment %}
             </div>
           </div>
 

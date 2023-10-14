@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Job
+from .models import Job, ApplyJob
 from .form import CreateJobForm, UpdateJobForm
 
 # Create your views here.
@@ -45,11 +45,42 @@ def update_job(request, pk):
 
 
 def job_listing(request):
-    jobs = Job.objects.filter(is_available=True)
+    jobs = Job.objects.filter(is_available=True).order_by('-timestamp')
     context = {'jobs': jobs}
     return render(request, 'job/job_listing.html', context)
 
 def job_details(request, pk):
+    if ApplyJob.objects.filter(user=request.user, job=pk).exists():
+        has_applied = True
+    else:
+        has_applied = False
     job = Job.objects.get(pk=pk)
-    context = {'job': job}
+    context = {'job': job, 'has_applied': has_applied}
     return render(request, 'job/job-details.html', context)
+
+def Appy_to_Job(request, pk):
+    if request.user.is_authenticated and request.user.is_jobseeker:
+        job = Job.objects.get(pk=pk)
+        if ApplyJob.objects.filter(user=request.user, job=pk).exists():
+            messages.info(request, 'You have already applied for this job.')
+            return redirect('dashboard')
+        else:
+            ApplyJob.objects.create(
+                job=job,
+                user = request.user,
+                status = 'Pending'
+            )
+            messages.success(request, 'Your application has been submitted.')
+            return redirect('dashboard')
+    if request.user.is_authenticated and request.user.is_employer:
+        messages.info(request, 'You are not allowed to apply for jobs.')
+        return redirect('dashboard')
+    else:
+        messages.info(request, 'Please login or register  as a jobseeker to apply for jobs')
+        return redirect('login_page')
+    
+def  jobseekers(request, pk):
+    job =Job.objects.get(pk=pk)
+    jobseeker = job.applyjob_set.all()
+    context ={'job': job, 'jobseeker': jobseeker} 
+    return render(request, 'job/all_jobseekers.html', context)

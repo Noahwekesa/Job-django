@@ -8,10 +8,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7">
-          <h1 class="text-white font-weight-bold">Update Profile</h1>
+          <h1 class="text-white font-weight-bold">Manage Profile</h1>
           <div class="custom-breadcrumbs">
             <a href="{% url 'index' %}">Home</a> <span class="mx-2 slash">/</span>
-            <span class="text-white"><strong>Update Profile</strong></span>
+            <span class="text-white"><strong>Manage Profile</strong></span>
           </div>
         </div>
       </div>
@@ -23,8 +23,22 @@
         <div class="col-lg-6 mb-5 mb-lg-0">
 
 
+          <figure class="media">
+            <img src="{{user.Resume.image.url}}" class="rounded-circle accounr-img " alt="no profile">
+          </figure>
+
           <form method="POST">
             {% csrf_token %}
+
+            <!--profile picture-->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black" for="image">Image</label> 
+                {% render_field form.image class="img-thumbnail" %}
+              </div>
+            </div>            
+
+
             <div class="row form-group">
 
               <div class="col-md-6 mb-3 mb-md-0">
@@ -37,18 +51,12 @@
                 {% render_field form.surname class="form-control"%}
               </div>
 
-              {% comment %} <div class="col-md-6">
-                <label class="text-black" for="lname">Email</label>
-                
-                {% render_field form.email class="form-control"%}
-            </div> {% endcomment %}
-            </div>
-            
+             </div>          
               <div class="row form-group">
                   
                   <div class="col-md-12">
                   <label class="text-black" for="email">Title</label> 
-                  {% render_field form.job_title class="form-control"%}
+                  {% render_field form.job_title class="form-control" placeholder="Your profesional headline(i.e Experienced Manager)"%}
                   </div>
 
                   <div class="col-md-6 mb-3 mb-md-0">
@@ -56,13 +64,12 @@
                     {% render_field form.location class="form-control"%}
                   </div>
               </div>
-         
 
               <div class="row form-group">
-                  
-                  <div class="col-md-12">
-                  {% comment %} <input type="hidden" id="" value="NULL" name="title" class="form-control"> {% endcomment %}
-                  </div>
+                <div class="col-md-12">
+                  <label class="text-black" for="phone-number">Phone Number</label>
+                  {% render_field form.phone_number class="form-control" id="drop" placeholder="e.g. 254"%}
+                </div>
               </div>
             
 
@@ -70,7 +77,15 @@
             <div class="row form-group">
               <div class="col-md-12">
                 <label class="text-black" for="message">Bio</label>
-                {% render_field form.job_title class="form-control"  cols="30" rows="7" placeholder="Write a short description about you here..." %}
+                {% render_field form.job_title class="form-control"  cols="30" rows="7" placeholder="provide a short bio" %}
+              </div>
+            </div>
+
+            <!--skills-->
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label class="text-black" for="skills">Skills</label>
+                {% render_field form.skills class="form-control"  cols="30" rows="7" placeholder="Write your skills.." %}
               </div>
             </div>
 
@@ -108,28 +123,14 @@
               </div>
             </div> 
 
-            <div class="row form-group">
-              
-              <div class="col-md-12">
-                <label class="text-black" for="subject">Image</label> 
-                {% render_field form.image class="form-control" %}
-              </div>
-            </div> 
+           
           
 
             <div class="row form-group">
               
               <div class="col-md-12">
                 <label class="text-black" for="subject">CV</label> 
-                {% render_field form.cv class="form-control" %}
-              </div>
-            </div> 
-          
-
-              <div class="row form-group">
-              
-              <div class="col-md-12">
-                <input type="hidden" value="NULL" name="cv" id="" class="form-control">
+                {% render_field form.cv class="form-control"  placeholder="The attached CV will be the default CV when applying to jobs"%}
               </div>
             </div> 
           

@@ -7,58 +7,33 @@
 
  <!--home-->
  <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7">
-          <h1 class="text-white font-weight-bold">Available Jobs</h1>
-          <div class="custom-breadcrumbs">
-            <a href="#">Home</a> <span class="mx-2 slash">/</span>
-            <span class="text-white"><strong>Jobs
-            </strong></span>
-          </div>
-        </div>
-      </div>
-    </div>
+
 </section>
 
 
-<section class="site-section" style="" id="home-section">
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% if jobs %}
-        {% for job in jobs  %}
-        
-        
-     
-        <div class="col-md-4">
-            <div class="card">
-                {% comment %} <img class="card-img-top" style="height:200px" src="" alt=""> {% endcomment %}
-                <div class="card-body">
-                    <h5 class="card-title text-black">
-                      {{  job.title  }}
-                    </h5>
-                    
-                        <p class="card-text"> <span class="icon-room"></span>{{ job.location}}</p>
-                        <p class="card-text"><span class="badge badge-success">Full Time</span></p>
-                    
-                    <p class="card-text">{{ job.requirements|truncatechars:100}}
-                    </p>
-
-
-                    <p class="card-text">{{ job.salary|intcomma}}</p>
-                    <p class="card-text">Posted by: {{job.company}}</p>
-                    <a href="{%  url 'job-details' job.pk %}" class="btn btn-primary btn-sm">View Details</a>
-                </div>
-                <div class="card-footer">
-                    <small class="text-mute">Created {{ job.timestamp|naturaltime}}</small>
-                </div>
-            </div>
-        </div>
-    
+<section>
+  <div class="align-center">
+    </h3>Available Jobs</h3>
+  </div>
+  <div class="card-group">
+    {% if jobs %}
+    {% for job in jobs %}
+    <div class="card m-3">
+      <div class="card-body">
+        <h5 class="card-title text-black">  {{  job.title  }}</h5>
+        <p class="card-text">{{ job.location}} | Full Time</p>
+        <p class="card-text">{{ job.requirements|truncatechars:100}}</p>
+        <p class="card-text">{{ job.salary|intcomma}}</p>
+        <p class="card-text">Posted by: {{job.company}}</p>
+        <a href="{%  url 'job-details' job.pk %}" class="btn btn-primary btn-sm">View Details</a>
+      </div>
+      <div class="card-footer">
+        <small class="text-mute">Created {{ job.timestamp|naturaltime}}</small>
+    </div>
     </div>
     {% endfor %}
     {% endif %}
-</div>
+  </div>
 </section>
 
  {% endblock %}

@@ -1,15 +1,19 @@
 {% load static %}
+
+{% block content %}
 <!-- NAVBAR -->
 <header class="site-navbar mt-3">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="site-logo col-6 fw-bold"><a href="{% url 'index' %}">JobBoard</a></div>
+        <div class="site-logo col-6 font-bold"><a href="{% url 'index' %}">JobBoard</a></div>
   
         <nav class="mx-auto site-navigation">
           <ul style="margin-right: -500px" class="site-menu js-clone-nav d-inline d-xl-block ml-0 pl-0">
             <li><a href="{% url 'index' %}" class="nav-link active">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
+
+            <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
 
             <li><a href="#" >Workers</a></li> 
             <li><a href="#">Companies</a></li> 
@@ -29,15 +33,15 @@
 
               <!--user dropdown menu-->
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ user.username }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                   <!--if user is JobSeeker, show this-->
                   {% if user.is_jobseeker %}
-                  <a class="dropdown-item" id="drop" href="#">Public profile</a> 
-                  <a class="dropdown-item" href="{% url 'update_profile' %}" id="drop">Update profile</a> 
+                  <a class="dropdown-item" href="{% url 'view_profile'  %}" id="drop">View Profile</a>
+                  <a class="dropdown-item" href="{% url 'update_profile' %}" id="drop">Manage Profile</a> 
                  
                     <a class="dropdown-item" href="#" id="drop">Saved Jobs</a>
                   {% endif %}
@@ -45,7 +49,7 @@
                   <!--if user is employer, show this-->
                   {% if user.is_employer %}
                     <a class="dropdown-item" href="{% url 'dashboard' %}" id="drop">Dashboard</a>
-                    <a class="dropdown-item" href="#" id="drop">Show Applicants</a>
+                    <a class="dropdown-item" href="{% url 'manage-job' %}" id="drop">Show Applicants</a>
                     <a class="dropdown-item" href="#" id="drop">Company Public Profile</a>
                     <a class="dropdown-item" href="{% url "update_company" %}" id="drop">Edit Company Details </a>
                   {% endif %}
@@ -95,4 +99,4 @@
       </div>
     </div>
   </header>
-  
+  {% endblock %}

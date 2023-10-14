@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+{% include "nav.html" %}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+  
+</section>
+<div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4 d-inline text-black">All Candidates for {{ job.title }} position</h5>
+        
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Location</th>
+                <th scope="col">Candidate Position title</th>
+                <th scope="col">Application Date</th>
+                <th scope="col">Curricurilum</th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for jobseeker in jobseeker %}
+              <tr>
+                <th scope="row">{{ jobseeker.id }}</th>
+                <td>{{ jobseeker.user.resume.firstname }}</td>
+                <td>{{ jobseeker.user.resume.surname }}</td>
+                <td>{{ jobseeker.user.resume.location }}</td>
+                <td>{{ jobseeker.user.resume.job_title}}</td>
+                <td>{{ jobseeker.timestamp|naturaltime}}</td>
+                <td>Download Resume</td>
+                <td><a href="">update job</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table> 
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
