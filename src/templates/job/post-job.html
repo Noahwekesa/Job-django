@@ -69,7 +69,17 @@
 
               <div class="form-group">
                 <label for="location">Location</label>
-               {% render_field form.location class="form-control" id="job-location" placeholder="e.g. Nairobi"  %}
+               {% render_field form.city class="form-control" id="job-location" placeholder="e.g. Nairobi"  %}
+              </div>
+
+              <div class="form-group" required>
+                <label for="industry">Industry</label>
+                {% render_field form.industry class="form-control" %}
+              </div>
+
+              <div class="form-group" required>
+                <label for="job_type">Job Type</label>
+                {% render_field form.job_type class="form-control" %}
               </div>
 
               <div class="form-group">

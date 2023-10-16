@@ -16,7 +16,7 @@
             <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
 
             <li><a href="#" >Workers</a></li> 
-            <li><a href="#">Companies</a></li> 
+            <li><a href="#">Companies hiring</a></li> 
 
             {% if request.user.is_authenticated %}
             {% comment %} <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  {% endcomment %}
@@ -92,6 +92,8 @@
               </li>
               
               {% endif %}
+
+            
           </ul>
         </nav>
 

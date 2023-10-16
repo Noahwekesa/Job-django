@@ -28,7 +28,7 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     # email = models.EmailField(unique=True)
-    location = models.CharField(max_length=100)
+    # location = models.CharField(max_length=100)
     salary = models.IntegerField(default=35000)
     requirements = models.TextField()
     ideal_candidate = models.TextField()

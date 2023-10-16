@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'dashboard',
     'widget_tweaks',
     'job',
+    'django_filters',
 ]
 #logout
 LOGOUT_REDIRECT_URL = 'index'

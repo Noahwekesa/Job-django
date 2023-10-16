@@ -4,9 +4,14 @@ from .forms import UserRegistrationForm
 from django.contrib.auth import login, authenticate, logout 
 from resume.models import Resume
 from company.models import Company
+from job.filter import JobFilter
+from job.models import Job
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    filter = JobFilter(request.GET, queryset=Job.objects.filter(is_available=True).order_by('-timestamp'))
+    # jobs = Job.objects.filter(is_available=True).order_by('-timestamp')
+    context = {'filter': filter}
+    return render(request, 'index.html', context)
 
 def about_page(request):
     return render(request, 'about.html')
@@ -69,7 +74,7 @@ def login_page(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            messages.warning(request, "something went wrong")
+            messages.warning(request, "Invalid email or password. Please try again.")
             return redirect('login_page')
     else:
         return render(request, 'auth/login.html')
