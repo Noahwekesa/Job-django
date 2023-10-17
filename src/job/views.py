@@ -41,7 +41,7 @@ def update_job(request, pk):
             messages.error(request, 'Something went wrong.')
             return redirect('dashboard')
     else:
-        form = UpdateJobForm(insatance=job)
+        form = UpdateJobForm(instance=job)
         context = {'form': form}
         return render(request, 'job/update_job.html', context)
 
@@ -89,3 +89,24 @@ def candidates_list(request, pk):
     jobseeker = job.applyjob_set.all()
     context ={'job': job, 'jobseeker': jobseeker} 
     return render(request, 'job/all_jobseekers.html', context)
+
+def applied_jobs(request):
+    jobs = ApplyJob.objects.filter(user=request.user)
+    context = {'jobs': jobs}
+    return render(request, 'jobseekers/applied_jobs.html', context)
+
+def delete_job(request, id):
+    if request.user.is_employer:
+        try:
+            job = Job.objects.get(id=id)
+            job.delete()
+            messages.success(request, 'Job deleted successfully')
+            return redirect('manage-job')
+        except Job.DoesNotExist:
+            messages.warning(request, 'Error while trying to delete job')
+            return redirect('manage-job')
+    else:
+        messages.warning(request, 'Error while trying to delete job')
+        return redirect('manage-job')
+        
+    

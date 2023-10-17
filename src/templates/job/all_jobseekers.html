@@ -12,6 +12,13 @@
         <div class="card-body">
           <h5 class="card-title mb-4 d-inline text-black">All Candidates for {{ job.title }} position</h5>
         
+          <form method="post" action="">
+            {% csrf_token %}
+            <label for="skill">Filter by Skill:</label>
+            <input type="text" name="skill" id="skill" placeholder="Enter skills (comma-separated)">
+            <button type="submit">Apply Filter</button>
+          </form>
+
           <table class="table">
             <thead>
               <tr>
@@ -33,9 +40,14 @@
                 <td>{{ jobseeker.user.resume.location }}</td>
                 <td>{{ jobseeker.user.resume.job_title}}</td>
                 <td>{{ jobseeker.timestamp|naturaltime}}</td>
+                <td><a target="_blank" href="{{jobseeker.user.resume.cv.url}}">View Resume</a></td>
                 <td>Download Resume</td>
                 <td><a href="">update job</a></td>
               </tr>
+              {% empty %}
+            <tr>
+                <td colspan="3">No candidates found.</td>
+            </tr>
               {% endfor %}
             </tbody>
           </table> 

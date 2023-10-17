@@ -11,7 +11,15 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title mb-4 d-inline">Jobs</h5>
-        
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags}}">
+              <b>{{ message }}</b>
+            </div>
+            {% endfor %}
+            {% endif %}
+
           <table class="table">
             <thead>
               <tr>
@@ -30,14 +38,14 @@
                 <th scope="row">{{job.id}}</th>
                 <td>{{job.title}}</td>
                 <td>{{job.city}}</td>
-                <td>{{job.applyjob_set.all.count}} <a href="{% url 'jobseekers'  job.pk%}"><small>View all</small></a></td>
+                <td>{{job.applyjob_set.all.count}} <a href="{% url 'jobseekers'  job.id %}"><small>View all</small></a></td>
                 <td>{{job.salary}}</td>
                 {% if job.is_available  %}
-                <td><span class="badge bg-success">Active</span></td>
+                <td><span class="text-white badge bg-success">Active</span></td>
                 {% else %}
-                <td><span class="badge bg-warning">Not Active</span></td>
+                <td><span class="text-white badge bg-warning">Not Active</span></td>
                 {% endif %}
-                <td><a href="">update job</a></td>
+                <td> <a href="{% url 'update_job' job.pk  %}" class="btn btn-info btn-sm">Update Job</a>      |<a href="{% url  'delete-job' job.id  %}" class="btn btn-sm btn-danger"> Delete</a></td>
               </tr>
               {% endfor%}
             </tbody>

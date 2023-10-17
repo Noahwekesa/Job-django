@@ -11,7 +11,7 @@ def update_profile(request):
         return redirect('dashboard')
     resume = Resume.objects.get(user=request.user)
     if request.method == 'POST':
-        form = ResumeForm(request.POST, instance=resume)
+        form = ResumeForm(request.POST, request.FILES, instance=resume)
         if form.is_valid():
             var = form.save(commit=False)
             user = User.objects.get(pk=request.user.id)

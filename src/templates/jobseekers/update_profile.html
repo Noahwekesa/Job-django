@@ -27,7 +27,7 @@
             <img src="{{user.Resume.image.url}}" class="rounded-circle accounr-img " alt="no profile">
           </figure>
 
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             <!--profile picture-->
@@ -77,7 +77,7 @@
             <div class="row form-group">
               <div class="col-md-12">
                 <label class="text-black" for="message">Bio</label>
-                {% render_field form.job_title class="form-control"  cols="30" rows="7" placeholder="provide a short bio" %}
+                {% render_field form.bio class="form-control"  cols="30" rows="7" placeholder="provide a short bio" %}
               </div>
             </div>
 
@@ -129,7 +129,7 @@
             <div class="row form-group">
               
               <div class="col-md-12">
-                <label class="text-black" for="subject">CV</label> 
+                <label class="text-black" for="subject">upload resume</label> 
                 {% render_field form.cv class="form-control"  placeholder="The attached CV will be the default CV when applying to jobs"%}
               </div>
             </div> 
