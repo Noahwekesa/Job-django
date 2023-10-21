@@ -3,7 +3,11 @@ from django.contrib import messages
 from .models import Resume
 from users.models import User
 from .form import ResumeForm
+
+
 # Create your views here.
+
+
 
 def update_profile(request):
     if request.user.is_employer:

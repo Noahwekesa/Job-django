@@ -26,13 +26,15 @@
               <div class="row mb-5">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   {% comment %} <input type="text" > {% endcomment %}
-                  {% render_field filter.form.title class="form-control form-control-lg" placeholder="Job title, Company..." %}
+                  <label for="title">Job title</label>
+                  {% render_field filter.form.title class="form-control form-control-lg" placeholder="Job title..." %}
                 </div>
 
             <!--
               location
             -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <label for="location">Location</label>
                   {% render_field filter.form.city class="form-control form-control-lg" placeholder="Location" %}
                 </div>
 
@@ -40,15 +42,17 @@
                   job type
                 -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <label for="job_type">Job Type</label>
                   {% render_field filter.form.job_type class="form-control form-control-lg" %}
                 </div>
 
                 <!--
                   Industry
                 -->
-                {% comment %} <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  {% render_field filter.form.job_type class="form-control form-control-lg" %}
-                </div> {% endcomment %}
+               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                <label for="industry">Industry</label>
+                  {% render_field filter.form.industry class="form-control form-control-lg" %}
+                </div> 
                 <!--
                   button
                 -->
@@ -72,7 +76,7 @@
         </div>
       </div>
 
-      <a href="#next" class="scroll-button smoothscroll">
+      <a href="#bottom" class="scroll-button smoothscroll">
         <span class=" icon-keyboard_arrow_down"></span>
       </a>
 
@@ -103,6 +107,8 @@
         </div>
       </div>
       </div>
+      {% empty %}
+      <p class="text-blue"> No jobs found</p>
         {% endfor %}
       </div>
 
@@ -152,207 +158,6 @@
       </div>
     </section>
 
-    
-{% comment %} 
-    <section class="site-section">
-      <div class="container">
-
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2">Newest Jobs</h2>
-          </div>
-        </div>
-        
-        <ul class="job-listings mb-5">
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-
-
-
-            <div class="job-listing-logo">
-              <img src="images/job_logo_1.jpg" class="img-fluid">
-            </div>
-
-              <!--
-                template
-              -->
-            
-              <div class="container">
-                <div class="row">
-                    {% for job in jobs %}
-                        <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                            <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                <h2>{{ job.title }}</h2>
-                                <strong>{{ job.company }}</strong>
-                            </div>
-                            <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                <span class="icon-room"></span> {{ job.location }}
-                            </div>
-                            <div class="job-listing-meta">
-                                <span class="badge badge-danger">fulltime</span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Adidas</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> New York, New York
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-danger">Part Time</span>
-              </div>
-            </div>
-            
-          </li>
-
-          
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_2.jpg' %}" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <li class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </li>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_3.jpg' %}" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Back-end Engineer (Python)</h2>
-                <strong>Amazon</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_4.jpg" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Senior Art Director</h2>
-                <strong>Microsoft</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Anywhere 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_5.jpg" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Puma</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> San Mateo, CA 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_1.jpg" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Adidas</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> New York, New York
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-danger">Part Time</span>
-              </div>
-            </div>
-            
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_2.jpg" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>      
-        </ul>
-      </div>
-    </section> {% endcomment %}
-
-
-    <section class="py-5 bg-image overlay-primary fixed overlay">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <h2 class="text-white">Sign Up to Get Job Alerts</h2>
-            <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
-          </div>
-          <div class="col-md-3 ml-auto">
-            <a href="{% url 'job_listing' %}" class="d-lg-inline border p-2 btn text-white">Find Your Future Job</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-     
-    
     <section class="site-section py-4">
       <div class="container">
   
@@ -382,43 +187,76 @@
       </div>
     </section>
 
-
-    <section class="bg-light pt-5 testimony-full">
-        
-        <div class="owl-carousel single-carousel">
-
-        
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 align-self-center text-center text-lg-left">
-                <blockquote>
-                  <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
-                  <p><cite> &mdash; Corey Woods, @Dribbble</cite></p>
-                </blockquote>
-              </div>
-              <div class="col-lg-6 align-self-end text-center text-lg-right">
-                {% comment %} <img src="{% static  'images/person_transparent_2.png' %}" alt="Image" class="img-fluid mb-0"> {% endcomment %}
-              </div>
-            </div>
+    <section class="py-5 bg-image overlay-primary fixed overlay">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h2 class="text-white">Ready to find your next job?</h2>
+            <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
           </div>
-
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 align-self-center text-center text-lg-left">
-                <blockquote>
-                  <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
-                  <p><cite> &mdash; Chris Peters, @Google</cite></p>
-                </blockquote>
-              </div>{% comment %} 
-              <div class="col-lg-6 align-self-end text-center text-lg-right">
-                <img src="{% static 'images/person_transparent.png' %}" alt="Image" class="img-fluid mb-0">
-              </div> {% endcomment %}
-            </div>
+          <div class="col-md-3 ml-auto">
+            <a href="{% url 'login_page' %}" class="d-lg-inline border p-2 btn text-white">Find Your Future Job</a>
           </div>
-
+        </div>
       </div>
-
     </section>
+
+
+    <div class="container">
+        <section class="bg-light pt-5 testimony-full">
+            <div class="owl-carousel single-carousel">
+                <!-- Block 1 -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <blockquote>
+                                <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
+                                <p><cite> &mdash; Corey Woods, @Dribbble</cite></p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Block 2 -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <blockquote>
+                                <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
+                                <p><cite> &mdash; Chris Peters, @Google</cite></p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Block 3 (Add two more blocks as needed) -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <blockquote>
+                                <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere atque sed saepe velit minus, exercitationem tempora, vel eveniet sint odit quidem est corrupti nam dignissimos reprehenderit distinctio doloremque tempore? Sequi!&rdquo;</p>
+                                <p><cite> &mdash; Elon musk, @Tesla</cite></p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Block 4 (Add two more blocks as needed) -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <blockquote>
+                                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vel aliquid accusantium alias consectetur, perferendis, pariatur tempora voluptatem quae error optio doloribus veritatis quod eum nemo aut! Accusamus, porro accusantium!&rdquo;</p>
+                                <p><cite> &mdash; Fumo Liyongo, @Netflix</cite></p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+  
+    
   {% include "footer.html" %}
     
 {% endblock %}

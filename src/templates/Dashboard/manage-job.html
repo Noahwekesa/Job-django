@@ -23,7 +23,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Job title</th>
                 <th scope="col">Location</th>
                 <th scope="col">No. of Applicants</th>
@@ -35,7 +34,6 @@
             <tbody>
                {% for job in jobs %}
               <tr>
-                <th scope="row">{{job.id}}</th>
                 <td>{{job.title}}</td>
                 <td>{{job.city}}</td>
                 <td>{{job.applyjob_set.all.count}} <a href="{% url 'jobseekers'  job.id %}"><small>View all</small></a></td>
@@ -43,7 +41,7 @@
                 {% if job.is_available  %}
                 <td><span class="text-white badge bg-success">Active</span></td>
                 {% else %}
-                <td><span class="text-white badge bg-warning">Not Active</span></td>
+                <td><span class="text-danger badge bg-warning">Not Active</span></td>
                 {% endif %}
                 <td> <a href="{% url 'update_job' job.pk  %}" class="btn btn-info btn-sm">Update Job</a>      |<a href="{% url  'delete-job' job.id  %}" class="btn btn-sm btn-danger"> Delete</a></td>
               </tr>

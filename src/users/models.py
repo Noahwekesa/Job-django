@@ -10,6 +10,8 @@ class User(AbstractUser):
     has_company = models.BooleanField(default=False)
 
 
+
+
 # GENDER_MALE = 'male'
 # GENDER_FEMALE = 'Female'
 

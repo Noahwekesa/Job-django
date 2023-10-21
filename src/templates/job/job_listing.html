@@ -12,8 +12,8 @@
 
 
 <section>
-  <div class="align-center">
-    </h3>Available Jobs</h3>
+  <div class=" d-flex justify-content-center text-black">
+    <h2 class="font-weight-bold">Available Jobs</h2>
   </div>
   <div class="card-group">
     {% if jobs %}
@@ -21,9 +21,8 @@
     <div class="card m-3">
       <div class="card-body">
         <h5 class="card-title text-black">  {{  job.title  }}</h5>
-        <p class="card-text">{{ job.location}} | Full Time</p>
+        <p class="card-text">{{ job.city}} | {{job.job_type}}|Ksh. {{ job.salary|intcomma}}</p>
         <p class="card-text">{{ job.requirements|truncatechars:100}}</p>
-        <p class="card-text">{{ job.salary|intcomma}}</p>
         <p class="card-text">Posted by: {{job.company}}</p>
         <a href="{%  url 'job-details' job.pk %}" class="btn btn-primary btn-sm">View Details</a>
       </div>

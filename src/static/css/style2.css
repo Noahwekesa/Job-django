@@ -48,3 +48,8 @@
     color: #FFFFFF; /* Change the text color on hover */
     background-color: #277F6A; /* Change the background color on hover */
 }
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+  overflow-y: auto; /* Enable vertical scrolling */
+}

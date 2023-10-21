@@ -21,10 +21,10 @@ from django.contrib.auth import views as views
 from dashboard.views import dashboard, manage_job
 from company.views import update_company, view_company
 from resume.views import update_profile, view_profile
-from job.views import create_job, update_job, job_listing, job_details, Appy_to_Job, candidates_list, applied_jobs, delete_job
-
+from job.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -58,7 +58,7 @@ urlpatterns = [
     path ('manage-job/', manage_job, name='manage-job'),
 
     #apply to job
-    path ('apply-to-job/<int:pk>/', Appy_to_Job, name='apply-to-job'),
+    path ('apply-to-job/<int:pk>/', Apply_to_Job, name='apply-to-job'),
     
     #show all candidates
     path('candidates_list/<int:pk>/', candidates_list, name='jobseekers'),

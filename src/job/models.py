@@ -42,13 +42,14 @@ class Job(models.Model):
         return self.title
     
 class ApplyJob(models.Model):
-    STATUS_CHOICES = (
+    JOB_STATUS_CHOICES = (
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
         ('Rejected', 'Rejected'),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job,     on_delete=models.CASCADE)
+    
     timestamp = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
+    job_status = models.CharField(max_length=20, choices=JOB_STATUS_CHOICES, default='Pending')
 

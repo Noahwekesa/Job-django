@@ -21,6 +21,7 @@
                 <th scope="col">Job Type</th>
                 <th scope="col">Industry</th>
                 <th scope="col">Action</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -31,6 +32,7 @@
               <td>{{job.job.salary}}</td>
               <td>{{job.job.job_type}}</td>
               <td>{{job.job.industry}}</td>
+              <td>{{job.job_status}}</td>
               <td><a href="{% url 'job-details' job.job.pk %}">View Job</a></td>
               </tr>
               {% endfor%}

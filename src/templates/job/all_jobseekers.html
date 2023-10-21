@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
+{% load widget_tweaks %}
 {% block content %}
 {% include "nav.html" %}
 <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
@@ -12,36 +13,39 @@
         <div class="card-body">
           <h5 class="card-title mb-4 d-inline text-black">All Candidates for {{ job.title }} position</h5>
         
-          <form method="post" action="">
-            {% csrf_token %}
-            <label for="skill">Filter by Skill:</label>
-            <input type="text" name="skill" id="skill" placeholder="Enter skills (comma-separated)">
+          {% comment %} <form method="get">
+            {{myFilter.form}}
             <button type="submit">Apply Filter</button>
-          </form>
+        </form> {% endcomment %}
 
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Firstname</th>
-                <th scope="col">Surname</th>
+                <th scope="col"> Names </th>
                 <th scope="col">Location</th>
                 <th scope="col">Candidate Position title</th>
+                <th scope="col">Candidate Skills</th>
+                <th scope="col">Years of experience</th>
                 <th scope="col">Application Date</th>
-                <th scope="col">Curricurilum</th>
+                <th scope="col">Resume</th>
+                <th scope="col">Application Status</th>
               </tr>
             </thead>
             <tbody>
-               {% for jobseeker in jobseeker %}
+               {% for jobseeker in jobseeker%}
               <tr>
-                <th scope="row">{{ jobseeker.id }}</th>
-                <td>{{ jobseeker.user.resume.firstname }}</td>
-                <td>{{ jobseeker.user.resume.surname }}</td>
+                <td> {{ jobseeker.user.resume.firstname }} {{ jobseeker.user.resume.surname }}</td>
                 <td>{{ jobseeker.user.resume.location }}</td>
                 <td>{{ jobseeker.user.resume.job_title}}</td>
+               <td>{{ jobseeker.user.resume.skills}}</td>
+               <td>{{ jobseeker.user.resume.experience}}</td>
                 <td>{{ jobseeker.timestamp|naturaltime}}</td>
-                <td><a target="_blank" href="{{jobseeker.user.resume.cv.url}}">View Resume</a></td>
-                <td>Download Resume</td>
+                 <td><a target="_blank" href="{{jobseeker.user.resume.cv.url}}">View Resume</a></td>
+                 
+                 <td>
+                 </td>
+
+
                 <td><a href="">update job</a></td>
               </tr>
               {% empty %}
@@ -55,4 +59,38 @@
       </div>
     </div>
   </div>
+
+  {% comment %} <section>
+    <div class="card">
+      <div class="card-body">
+      <h2 card-title>Conversation</h2>      
+      {% for message in applyjob.conversationmessages.all  %}
+      <div class="alert alert-info">
+        <b> {{ message.status.username - {{ message.created_at|naturaltime}} }} </b>
+
+
+        {{message.content}}
+      </div>
+      {% endfor %}
+      <form action="." method="post">
+        {% csrf_token %}
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" id="id_content" name="content" cols="30" rows="10" placeholder="Write your message"></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <button class="btn btn-success"> 
+              send
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+
+
+  </section> {% endcomment %}
 {% endblock %}

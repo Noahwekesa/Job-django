@@ -10,7 +10,7 @@
           <div class="col-md-7">
             <h1 class="text-white font-weight-bold">Log In</h1>
             <div class="custom-breadcrumbs">
-              <a href="#">Home</a> <span class="mx-2 slash">/</span>
+              <a href="{% url 'index' %}">Home</a> <span class="mx-2 slash">/</span>
               <span class="text-white"><strong>Profile Log In</strong></span>
             </div>
           </div>
@@ -32,6 +32,8 @@
             {% endfor %}
       {% endif %}
 
+
+      <!--login form-->
             <form method="post" class="p-4 border rounded-3 bg-light">
               {% csrf_token %}
 
@@ -55,6 +57,7 @@
               </div>
 
             </form>
+
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Job, ApplyJob
 from .form import CreateJobForm, UpdateJobForm
-from .filter import JobFilter
 # Create your views here.
 
 
@@ -32,7 +31,7 @@ def create_job(request):
 def update_job(request, pk):
     job = Job.objects.get(pk=pk)
     if request.method == 'POST':
-        form = UpdateJobForm(request.POST)
+        form = UpdateJobForm(request.POST, instance=job)
         if form.is_valid():
             form.save()
             messages.success(request, 'Job Updated successfully.')
@@ -63,7 +62,7 @@ def job_details(request, pk):
     context = {'job': job, 'has_applied': has_applied}
     return render(request, 'job/job-details.html', context)
 
-def Appy_to_Job(request, pk):
+def Apply_to_Job(request, pk):
     if request.user.is_authenticated and request.user.is_jobseeker:
         job = Job.objects.get(pk=pk)
         if ApplyJob.objects.filter(user=request.user, job=pk).exists():
@@ -73,7 +72,7 @@ def Appy_to_Job(request, pk):
             ApplyJob.objects.create(
                 job=job,
                 user = request.user,
-                status = 'Pending'
+                # status = 'Pending'
             )
             messages.success(request, 'Your application has been submitted.')
             return redirect('dashboard')
@@ -83,11 +82,13 @@ def Appy_to_Job(request, pk):
     else:
         messages.info(request, 'Please login or register  as a jobseeker to apply for jobs')
         return redirect('login_page')
-    
+
 def candidates_list(request, pk):
-    job =Job.objects.get(pk=pk)
+    job = Job.objects.get(pk=pk)
     jobseeker = job.applyjob_set.all()
-    context ={'job': job, 'jobseeker': jobseeker} 
+    # experience = jobseeker.objects.get()
+    context = {'job': job, 'jobseeker': jobseeker}
+
     return render(request, 'job/all_jobseekers.html', context)
 
 def applied_jobs(request):
