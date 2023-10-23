@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Job, ApplyJob
-from .form import CreateJobForm, UpdateJobForm
+from .form import CreateJobForm, UpdateJobForm, ApplyJobForm
+from .filter import ExpFilter
 # Create your views here.
 
 
@@ -62,32 +63,74 @@ def job_details(request, pk):
     context = {'job': job, 'has_applied': has_applied}
     return render(request, 'job/job-details.html', context)
 
+# def Apply_to_Job(request, pk):
+#     if request.user.is_authenticated and request.user.is_jobseeker:
+#         job = Job.objects.get(pk=pk)
+#         if ApplyJob.objects.filter(user=request.user, job=pk).exists():
+#             messages.info(request, 'You have already applied for this job.')
+#             return redirect('dashboard')
+#         else:
+#             if request.method == 'POST':
+#                 form = ApplyJobForm(request.POST)
+
+#                 if form.is_valid():
+#                     applyjob =form.save(commit=False)
+#                     applyjob.job = job
+#                     applyjob.save()                
+#                     ApplyJob.objects.create( job=job, user = request.user,)
+#                     messages.success(request, 'Your application has been submitted.')
+#                     return redirect('dashboard')
+#             else:
+#                 form =ApplyJobForm()
+#                 context = {'form': form, 'job': job}
+#             return render(request, 'job/applyjob.html', context)
+
+#     if request.user.is_authenticated and request.user.is_employer:
+#         messages.info(request, 'You are not allowed to apply for jobs. Sign Up as Jobsseeker to apply for jobs.')
+#         return redirect('dashboard')
+#     else:
+#         messages.info(request, 'Please login or register  as a jobseeker to apply for jobs')
+#         return redirect('login_page')
 def Apply_to_Job(request, pk):
     if request.user.is_authenticated and request.user.is_jobseeker:
         job = Job.objects.get(pk=pk)
-        if ApplyJob.objects.filter(user=request.user, job=pk).exists():
+        
+        # Check if the user has already applied for this job
+        if ApplyJob.objects.filter(user=request.user, job=job).exists():
             messages.info(request, 'You have already applied for this job.')
             return redirect('dashboard')
+        
+        if request.method == 'POST':
+            form = ApplyJobForm(request.POST)
+            if form.is_valid():
+                applyjob = form.save(commit=False)
+                applyjob.job = job
+                applyjob.user = request.user
+                applyjob.save()
+                messages.success(request, 'Your application has been submitted.')
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'There was an error in your application form.')
         else:
-            ApplyJob.objects.create(
-                job=job,
-                user = request.user,
-                # status = 'Pending'
-            )
-            messages.success(request, 'Your application has been submitted.')
-            return redirect('dashboard')
+            form = ApplyJobForm()  # Create an instance of the form
+
+        context = {'form': form, 'job': job}
+        return render(request, 'job/applyjob.html', context)
+
     if request.user.is_authenticated and request.user.is_employer:
-        messages.info(request, 'You are not allowed to apply for jobs. Sign Up as Jobsseeker to apply for jobs.')
+        messages.info(request, 'You are not allowed to apply for jobs. Sign up as a job seeker to apply for jobs.')
         return redirect('dashboard')
     else:
-        messages.info(request, 'Please login or register  as a jobseeker to apply for jobs')
+        messages.info(request, 'Please log in or register as a job seeker to apply for jobs.')
         return redirect('login_page')
+    
+
 
 def candidates_list(request, pk):
     job = Job.objects.get(pk=pk)
     jobseeker = job.applyjob_set.all()
-    # experience = jobseeker.objects.get()
-    context = {'job': job, 'jobseeker': jobseeker}
+    myFilter = ExpFilter(request.GET, queryset=jobseeker) 
+    context = {'job': job, 'jobseeker': myFilter.qs, 'myFilter': myFilter}
 
     return render(request, 'job/all_jobseekers.html', context)
 

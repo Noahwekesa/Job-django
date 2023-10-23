@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+
+<div class="card">
+    <div class="card-body">
+<h1 class="title">View Application</h1>
+
+<h2 class="subtitle">{{ job.title }}</h2>
+
+<small>Submitted: {{ applyjob.timestamp|naturaltime }}</small>
+
+<p><strong>Cover Letter</strong></p>
+<p>{{ applyjob.content }}</p>
+
+<p><strong>Years of Experience</strong></p>
+<p>{{ applyjob.experience }}</p>
+</div>
+</div>
+<hr class="color-black">
+<div class="container">
+<h2 class="font-bold align-center">Conversation</h2>
+<div class="conversation-container">
+{% for message in applyjob.conversationmessages.all %}
+    <div class=" {% if message.user == request.user %}sent-message{% else %}received-message{% endif %}">
+        <b>{{ message.user.username }} - {{ message.timestamp|naturaltime }} ago.</b><br>
+        
+        {{ message.content }}
+    </div>
+{% empty %}
+    <p>No messages yet...</p>
+{% endfor %}
+
+
+<form action="." method="post">
+    {% csrf_token %}
+   
+            <textarea class="textarea" name="content" id="id_content" cols="40" rows="5" placeholder="Type Your Message"></textarea>
+
+
+</div>
+
+<div class="m-4">
+    <button class="btn btn-success" type="submit">Send</button>
+</div>
+</form>
+</div>
+{% endblock %}

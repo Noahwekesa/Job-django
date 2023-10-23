@@ -10,7 +10,7 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title mb-4 d-inline">Jobs</h5>
+          <h5 class="card-title mb-4 d-inline">Jobs </h5>
 
             {% if messages %}
             {% for message in messages %}
@@ -34,7 +34,7 @@
             <tbody>
                {% for job in jobs %}
               <tr>
-                <td>{{job.title}}</td>
+                <td><a href="{% url 'job-details' job.pk %}">{{job.title}}</a></td>
                 <td>{{job.city}}</td>
                 <td>{{job.applyjob_set.all.count}} <a href="{% url 'jobseekers'  job.id %}"><small>View all</small></a></td>
                 <td>{{job.salary}}</td>

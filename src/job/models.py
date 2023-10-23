@@ -49,7 +49,20 @@ class ApplyJob(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job,     on_delete=models.CASCADE)
-    
+    content =  models.CharField(max_length=255, null=True, blank=True)
+    experience = models.PositiveBigIntegerField(null=True, blank=True)
+
     timestamp = models.DateTimeField(auto_now_add=True)
     job_status = models.CharField(max_length=20, choices=JOB_STATUS_CHOICES, default='Pending')
 
+
+
+class ConversationMessage(models.Model):
+    applyjob = models.ForeignKey(ApplyJob, related_name='conversationmessages', on_delete=models.CASCADE)
+    content = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User, related_name='conversationmessages', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        ordering   = ['timestamp']

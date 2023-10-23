@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% block  content%}
+{% include "nav.html" %}
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+
+</section>
+
+ 
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags}}">
+      <b>{{ message }}</b>
+    </div>
+    {% endfor %}
+{% endif %}
+
+     
+        <div class="card">
+                <h1 class="title">Apply for job -  {{job.title}}</h1>
+                <div class="card-body">
+                    <p class="card-text"><strong>Date applied:</strong> {{job..timestamp|naturaltime}} </p>
+                    <p class="card-text"><strong>Job status: </strong>{{ jobseeker.user.applyjob.job.job_status }}</p>
+                </div>
+    </div>
+        
+
+    <form action="." method="post">
+        {% csrf_token %}
+
+        <div class="form-control-sm">
+            <label for="experience">Years of experience</label>
+            {% render_field form.experience %}
+        </div>
+
+        <div class="form-group">
+            <label for="content">Cover Letter</label>
+            {% render_field form.content cols="30" rows="7" id="textarea" placeholder="write here your cover letter..." %}
+        </div>
+        <div>
+            <button type="submit" class="">Submit</button>
+        </div>
+    </form>
+{% endblock  %}

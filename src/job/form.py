@@ -12,3 +12,10 @@ class  UpdateJobForm(forms.ModelForm):
     class Meta:
         model = Job
         exclude = ('user', 'company')
+
+class ApplyJobForm(forms.ModelForm):
+
+    class Meta:
+        model = ApplyJob
+
+        fields = ('experience', 'content',)

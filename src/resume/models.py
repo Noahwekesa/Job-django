@@ -18,7 +18,6 @@ class Resume(models.Model):
     phone_number = models.CharField(max_length=20, blank=True)
     bio = models.TextField(null=True, blank=True)
     skills = models.TextField(blank=True, null=True)
-    experience =models.PositiveIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, default='null')
     facebook = models.CharField(max_length=100, null=True, blank=True)
     twitter = models.CharField(max_length=100, null=True, blank=True)

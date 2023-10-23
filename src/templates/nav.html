@@ -15,7 +15,7 @@
 
             <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
 
-            <li><a href="#" >Workers</a></li> 
+            <li><a href="#" >Job seeker</a></li> 
             <li><a href="#">Companies hiring</a></li> 
 
             {% if request.user.is_authenticated %}
@@ -40,6 +40,7 @@
 
                   <!--if user is JobSeeker, show this-->
                   {% if user.is_jobseeker %}
+                  <a class="dropdown-item" href="{% url 'dashboard' %}" id="drop">Dashboard</a>
                   <a class="dropdown-item" href="{% url 'view_profile'  %}" id="drop">View Profile</a>
                   <a class="dropdown-item" href="{% url 'update_profile' %}" id="drop">Manage Profile</a> 
                  

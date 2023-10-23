@@ -11,17 +11,32 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title mb-4 d-inline text-black">All Candidates for {{ job.title }} position</h5>
+          <h3 class="card-title mb-4 d-inline text-black" >All Candidates for {{ job.title }} position</h3>
         
-          {% comment %} <form method="get">
-            {{myFilter.form}}
-            <button type="submit">Apply Filter</button>
-        </form> {% endcomment %}
+          <form method="get" class="search-experience-form  my-4">
+            <p class="text-black">Filter candidates depending on their years of experience</p>
+            <div class="row mb-5">
+                <div class="col-2">
+                    {% render_field myFilter.form.minExperience  class="form-control form-control-sm"  placeholder="minimum years of experience" %}
+                </div>
+                <div class="col-2">
+                    {% render_field myFilter.form.maxExperience  class="form-control form-control-sm" placeholder="maximum years of experience" %}
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            
+        </form>
+        
 
           <table class="table">
+          
+          
+              <p>Click On Name To View Candidate Application</p>
+            
             <thead>
+             
               <tr>
-                <th scope="col"> Names </th>
+                <th scope="col"> Names</th>
                 <th scope="col">Location</th>
                 <th scope="col">Candidate Position title</th>
                 <th scope="col">Candidate Skills</th>
@@ -32,18 +47,18 @@
               </tr>
             </thead>
             <tbody>
-               {% for jobseeker in jobseeker%}
+               {% for jobseeker in myFilter.qs %}
               <tr>
-                <td> {{ jobseeker.user.resume.firstname }} {{ jobseeker.user.resume.surname }}</td>
+                <td><a href="{% url 'view_application' jobseeker.id %}"> {{ jobseeker.user.resume.firstname }} {{ jobseeker.user.resume.surname }}</a></td>
                 <td>{{ jobseeker.user.resume.location }}</td>
                 <td>{{ jobseeker.user.resume.job_title}}</td>
                <td>{{ jobseeker.user.resume.skills}}</td>
-               <td>{{ jobseeker.user.resume.experience}}</td>
+
+               <td>{{ jobseeker.experience }}</td> 
+
                 <td>{{ jobseeker.timestamp|naturaltime}}</td>
                  <td><a target="_blank" href="{{jobseeker.user.resume.cv.url}}">View Resume</a></td>
-                 
-                 <td>
-                 </td>
+                 <td>{{jobseeker.user.job.applyjob.job_status}}</td> 
 
 
                 <td><a href="">update job</a></td>

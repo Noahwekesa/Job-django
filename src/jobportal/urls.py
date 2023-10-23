@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from users.views import index, about_page, contact_page, login_page, jobseeker_signup, employer_signup, logout_page
 from django.contrib.auth import views as views
-from dashboard.views import dashboard, manage_job
+from dashboard.views import dashboard, manage_job, view_application
 from company.views import update_company, view_company
 from resume.views import update_profile, view_profile
 from job.views import *
@@ -58,7 +58,7 @@ urlpatterns = [
     path ('manage-job/', manage_job, name='manage-job'),
 
     #apply to job
-    path ('apply-to-job/<int:pk>/', Apply_to_Job, name='apply-to-job'),
+    path ('<int:pk>/apply-to-job/', Apply_to_Job, name='apply-to-job'),
     
     #show all candidates
     path('candidates_list/<int:pk>/', candidates_list, name='jobseekers'),
@@ -68,6 +68,9 @@ urlpatterns = [
 
      #delete jobs
      path ('job/<int:id>/', delete_job, name='delete-job'),
+
+     path('view-application/<int:applyjob_id>/', view_application, name='view_application')
+
 ]
 
 

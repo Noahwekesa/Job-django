@@ -45,6 +45,17 @@
             <p class="col-md-8 fs-4"></p>
         </div>
     </div>
+    <div class="m-5">
+    <h2 class="subtitle">Submitted Applications</h2>
+
+{% for job in jobs %}
+    <div class="applyjob">
+      <a href="{% url 'view_application' job.id %}">{{ job.title }}</a>
+    </div>
+{% empty %}
+    <p>You haven't applied for any jobs yet...</p>
+{% endfor %}
+</div>
   </section>
 
   {% elif request.user.is_employer %}
@@ -78,6 +89,8 @@
             </div>
         </div>
     </div>
+
+
   </section>
   {% endif %}
 
