@@ -19,30 +19,27 @@
     {% endfor %}
 {% endif %}
 
-     
-        <div class="card">
+<div class="container">
+      
                 <h1 class="title">Apply for job -  {{job.title}}</h1>
-                <div class="card-body">
-                    <p class="card-text"><strong>Date applied:</strong> {{job..timestamp|naturaltime}} </p>
-                    <p class="card-text"><strong>Job status: </strong>{{ jobseeker.user.applyjob.job.job_status }}</p>
-                </div>
-    </div>
+                
         
-
     <form action="." method="post">
         {% csrf_token %}
 
-        <div class="form-control-sm">
-            <label for="experience">Years of experience</label>
-            {% render_field form.experience %}
-        </div>
-
         <div class="form-group">
-            <label for="content">Cover Letter</label>
-            {% render_field form.content cols="30" rows="7" id="textarea" placeholder="write here your cover letter..." %}
+            <label for="experience" class="text-black">Indicate The Years Of Experience In This Poisition</label> <br>
+            {% render_field form.experience placeholder="Enter Years of experience for this position"  %}
         </div>
+<br>
+        <div class="form-group">
+            <label for="content">Cover Letter</label> <br>
+            {% render_field form.content|attr:"rows:20"|attr:"cols:30" class="form-control"  placeholder="write here your cover letter..." %}
+        </div>
+        
         <div>
-            <button type="submit" class="">Submit</button>
+            <button type="submit" class="btn btn-info">Submit</button>
         </div>
     </form>
+</div>
 {% endblock  %}

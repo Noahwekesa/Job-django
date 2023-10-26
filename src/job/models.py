@@ -49,7 +49,7 @@ class ApplyJob(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job,     on_delete=models.CASCADE)
-    content =  models.CharField(max_length=255, null=True, blank=True)
+    content =  models.CharField(max_length=255, null=True, blank=True, )
     experience = models.PositiveBigIntegerField(null=True, blank=True)
 
     timestamp = models.DateTimeField(auto_now_add=True)

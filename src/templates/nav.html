@@ -15,7 +15,7 @@
 
             <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
 
-            <li><a href="#" >Job seeker</a></li> 
+            <li><a href="{% url 'jobseekers-page' %}" >Job seeker</a></li> 
             <li><a href="#">Companies hiring</a></li> 
 
             {% if request.user.is_authenticated %}

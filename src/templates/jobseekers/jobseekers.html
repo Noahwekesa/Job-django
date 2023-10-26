@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include "nav.html" %}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+</section>
+
+<section class="container m-4">
+  {% for jobseeker in jobseekers %}
+    <div class="card" style="width: 18rem;">
+       
+        <img class="card-img-top" src="{{ jobseeker.image.url }}" alt="{{ jobseeker.firstname }} {{ jobseeker.surname }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ jobseeker.firstname }} {{ jobseeker.surname }}</h5>
+          <h6 class="card-subtitle mb-2 text-mute">{{ jobseeker.job_title }}</h6>
+          <p class="card-text"> <small>{{ jobseeker.bio }}</small></p>
+          {% comment %} <p class="card-text">{{ jobseeker.skills }}</p> {% endcomment %}
+          <a href="{% url 'view_profile'  %}" class="btn btn-primary">View Profile</a> 
+        </div>
+      </div>
+    {% empty %}
+    <p>No jobseekers found.</p>
+  {% endfor %}
+
+</section>
+
+
+
+{% endblock  %}
+
+

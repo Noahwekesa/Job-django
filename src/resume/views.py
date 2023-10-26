@@ -40,3 +40,8 @@ def view_profile(request):
             user_profile = get_object_or_404(Resume, user=request.user)
             context = {'resume': user_profile}
             return render(request, 'jobseekers/view_profile.html', context)
+
+def jobseekers_page(request):
+    jobseekers = Resume.objects.all()
+    context = {'jobseekers': jobseekers}
+    return render(request, 'jobseekers/jobseekers.html', context)

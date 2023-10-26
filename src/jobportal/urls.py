@@ -20,7 +20,7 @@ from users.views import index, about_page, contact_page, login_page, jobseeker_s
 from django.contrib.auth import views as views
 from dashboard.views import dashboard, manage_job, view_application
 from company.views import update_company, view_company
-from resume.views import update_profile, view_profile
+from resume.views import update_profile, view_profile, jobseekers_page
 from job.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -69,7 +69,9 @@ urlpatterns = [
      #delete jobs
      path ('job/<int:id>/', delete_job, name='delete-job'),
 
-     path('view-application/<int:applyjob_id>/', view_application, name='view_application')
+     path('view-application/<int:applyjob_id>/', view_application, name='view_application'),
+
+    path('jobseekers/', jobseekers_page, name='jobseekers-page'),
 
 ]
 
