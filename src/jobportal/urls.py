@@ -19,7 +19,7 @@ from django.urls import path
 from users.views import index, about_page, contact_page, login_page, jobseeker_signup, employer_signup, logout_page
 from django.contrib.auth import views as views
 from dashboard.views import dashboard, manage_job, view_application
-from company.views import update_company, view_company
+from company.views import update_company, view_company, company_page
 from resume.views import update_profile, view_profile, jobseekers_page
 from job.views import *
 from django.conf import settings
@@ -72,6 +72,9 @@ urlpatterns = [
      path('view-application/<int:applyjob_id>/', view_application, name='view_application'),
 
     path('jobseekers/', jobseekers_page, name='jobseekers-page'),
+
+    #all companies
+     path('companys/', company_page, name='company-page'),
 
 ]
 

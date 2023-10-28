@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% include "nav.html" %}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+</section>
+
+<section class="row container m-4">
+    {% for company in companys %}
+      <div class="card rounded-lg" style="width: 18rem; color:black;">
+         {% comment %} <figure>
+          <img class="card-img-top" src="{{ jobseeker.image.url }}" alt="{{ jobseeker.firstname }} {{ jobseeker.surname }}">
+        </figure> {% endcomment %}
+          <div class="card-body">
+            <h5 class="card-title text-capitalize">{{company.name }}</h5>
+            <p>{{company.city}}</p>
+            
+            <p class="card-text"> <small>{{ company.description }}</small></p>
+            {% comment %} <p class="card-text">{{ jobseeker.skills }}</p> {% endcomment %}
+            <a href="{% url 'view_profile'  %}" class="btn btn-info">View Company</a> 
+          </div>
+        </div>
+      {% empty %}
+      <p>No Companies found</p>
+    {% endfor %}
+    </section>
+{% include "footer.html" %}
+{% endblock  %}

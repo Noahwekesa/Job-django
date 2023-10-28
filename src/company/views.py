@@ -34,3 +34,8 @@ def view_company(request, pk):
         'company': company
     }
     return render(request, 'company/view_company.html', context)
+
+def company_page(request):
+    companys = Company.objects.all()
+    context = {'companys': companys}
+    return render(request, 'company/allcompanies.html', context)

@@ -16,7 +16,7 @@
             <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
 
             <li><a href="{% url 'jobseekers-page' %}" >Job seeker</a></li> 
-            <li><a href="#">Companies hiring</a></li> 
+            <li><a href="{% url 'company-page'  %}">Companies hiring</a></li> 
 
             {% if request.user.is_authenticated %}
             {% comment %} <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  {% endcomment %}
@@ -68,7 +68,7 @@
           {% else %}
               <!--Job Seeker dropdown menu-->
               <li class="nav-item py-4">
-                <a class="custom-btn dropdown-toggle" href="#" id="jobSeekerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="custom-btn dropdown-toggle d-lg-inline border p-2 active" href="#" id="jobSeekerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   
                     Job Seeker
       
@@ -81,7 +81,7 @@
 
               <!--Employer dropdown menu-->
               <li class="nav-item">
-                <a class="custom-btn dropdown-toggle" href="#" id="EmployerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="custom-btn dropdown-toggle d-lg-inline border p-2 active" href="#" id="EmployerDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  
                     Employer
         
