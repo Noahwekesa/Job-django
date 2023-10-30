@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import Job, ApplyJob
 from .form import CreateJobForm, UpdateJobForm, ApplyJobForm
 from .filter import ExpFilter
+from notification.utilities import create_notification
 # Create your views here.
 
 
@@ -107,6 +108,9 @@ def Apply_to_Job(request, pk):
                 applyjob.job = job
                 applyjob.user = request.user
                 applyjob.save()
+                
+                create_notification(request, job.user,  'application', extra_id=applyjob.id)
+
                 messages.success(request, 'Your application has been submitted.')
                 return redirect('dashboard')
             else:

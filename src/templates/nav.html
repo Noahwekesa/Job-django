@@ -19,7 +19,7 @@
             <li><a href="{% url 'company-page'  %}">Companies hiring</a></li> 
 
             {% if request.user.is_authenticated %}
-            {% comment %} <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  {% endcomment %}
+        <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  
         {% endif %}
 
 

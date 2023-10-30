@@ -24,6 +24,7 @@ from resume.views import update_profile, view_profile, jobseekers_page
 from job.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from notification.views import notifications
 
 
 urlpatterns = [
@@ -75,6 +76,8 @@ urlpatterns = [
 
     #all companies
      path('companys/', company_page, name='company-page'),
+
+       path('notifications/', notifications, name='notifications'),
 
 ]
 

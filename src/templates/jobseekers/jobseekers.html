@@ -16,7 +16,7 @@
           <h6 class="card-subtitle mb-2  text- capitalize">{{ jobseeker.job_title }}</h6>
           <p class="card-text"> <small>{{ jobseeker.bio }}</small></p>
           {% comment %} <p class="card-text">{{ jobseeker.skills }}</p> {% endcomment %}
-          <a href="{% url 'view_profile'  %}" class="btn btn-info">View Profile</a> 
+          <a href="{% url 'view_profile' %}" class="btn btn-info">View Profile</a> 
         </div>
       </div>
     {% empty %}

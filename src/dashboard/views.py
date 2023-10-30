@@ -3,6 +3,7 @@ from job.models import Job
  # Import the correct path to your SkillsFilter
 from django.contrib.auth.decorators import login_required
 from job.models import Job, ApplyJob, ConversationMessage
+from notification.utilities import create_notification
 
 
 # Create your views here.
@@ -29,6 +30,9 @@ def view_application(request, applyjob_id):
         content = request.POST.get('content')
         if content:
             conversationmessage = ConversationMessage.objects.create(applyjob=applyjob, content=content, user=request.user)
+
+            create_notification(request, applyjob.user,  'message', extra_id=applyjob.id)
+            
             return redirect('view_application', applyjob_id=applyjob_id)  # Use applyjob_id as the parameter name
     
     return render(request, 'Dashboard/view_application.html', {'applyjob': applyjob})
