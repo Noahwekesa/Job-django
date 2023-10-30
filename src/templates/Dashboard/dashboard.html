@@ -7,16 +7,6 @@
 {% include "nav.html" %}
 
 <section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7">
-        <div class="custom-breadcrumbs">
-          <a href="#">Home</a> <span class="mx-2 slash">/</span>
-          <span class="text-white"><strong>Dashboard</strong></span>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 {% if messages %}
@@ -45,6 +35,8 @@
             <p class="col-md-8 fs-4"></p>
         </div>
     </div>
+
+    
     <div class="m-5">
     <h2 class="subtitle">Submitted Applications</h2>
 
@@ -67,30 +59,55 @@
 {% endif %}
   </div>
   <section>
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">
-            Welcome to employer Dashboard
-            </h1>
-            <p class="col-md-8 fs-4"></p>
-            <div>
-              <h5 class="font-bold">Employer Dashboard Navigation</h5>
-              <ul>
-                <li>
-                  <a href="{% url 'post-job'%}">Post Job</a>
-                </li>
-                
-                <li>
-                  <a href="{% url 'manage-job' %}">Manage Jobs</a>
-                </li>
-
-                
-              </ul>
-            </div>
-        </div>
-    </div>
+   
+    <div class="container-fluid">
+      <div class="row">
+          <!-- Sidebar -->
+          <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block  sidebar">
+              <div class="position-sticky">
+                  <ul class="nav flex-column">
+                      <li class="nav-item">
+                          <h3 class="nav-link active">
+                             NAVIGATION
+                          </h3>
+                      </li>
+        
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'update_company' %}">
+                  Edit Company Profile Details
+                          </a>
+                      </li>
 
 
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'post-job' %}">
+                       Post Jobs
+                          </a>
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'manage-job' %}">
+                            Manage Jobs
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'logout_page' %}">
+                              Logout
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+
+          <!-- Main content -->
+          <main id="content" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              <h1 class="mt-4">Welcome to Your Employer Dashboard</h1>
+            
+          </main>
+      </div>
+  </div>
+  
   </section>
   {% endif %}
 

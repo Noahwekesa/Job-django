@@ -14,12 +14,13 @@
             <li><a href="{% url 'contact' %}">Contact</a></li>
 
             <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
-
-            <li><a href="{% url 'jobseekers-page' %}" >Job seeker</a></li> 
-            <li><a href="{% url 'company-page'  %}">Companies hiring</a></li> 
-
+            {% if user.is_jobseeker %}
+            <li><a href="{% url 'company-page'  %}">Companies hiring</a></li>
+            {% elif user.is_employer %}
+            <li><a href="{% url 'jobseekers-page' %}" >Job seekers</a></li>
+            {% endif %}
             {% if request.user.is_authenticated %}
-        <a href="{% url 'notifications' %}" class="navbar-item">Notifications ({{ notifications.count }})</a>  
+        <a href="{% url 'notifications' %}">Notifications ({{ notifications.count }})</a>  
         {% endif %}
 
 
@@ -36,7 +37,7 @@
                 <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ user.username }}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
 
                   <!--if user is JobSeeker, show this-->
                   {% if user.is_jobseeker %}
@@ -50,9 +51,6 @@
                   <!--if user is employer, show this-->
                   {% if user.is_employer %}
                     <a class="dropdown-item" href="{% url 'dashboard' %}" id="drop">Dashboard</a>
-                    <a class="dropdown-item" href="{% url 'manage-job' %}" id="drop">Show Applicants</a>
-                    <a class="dropdown-item" href="#" id="drop">Company Public Profile</a>
-                    <a class="dropdown-item" href="{% url "update_company" %}" id="drop">Edit Company Details </a>
                   {% endif %}
                   <div class="dropdown-divider"></div> 
                 <a class="dropdown-item" href="{% url 'logout_page' %}" id="drop">Logout</a>

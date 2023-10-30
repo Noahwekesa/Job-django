@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% include "nav.html" %}
+<section class="section-hero overlay inner-page bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
+      
+</section>
+
 <div class="container">
 <h1 class="title">Notifications</h1>
 </div>
@@ -11,15 +16,16 @@ no notifications yet!
     <div class='notification'>
         <p>
             {% if notification.notification_type == 'message' %}
-            <a href="{% url 'notification'  %}?goto=view_application&notification={{ notification.id }}&extra_id={{ notification.extra_id }}">
+            <a href="{% url 'notifications'  %}?goto=view_application&notification={{ notification.id }}&extra_id={{ notification.extra_id }}">
                 <strong>{{ notification.user.username }}</strong> sent you a message. <br>
                 <small>{{ notification.timestamp }}</small>
             </a>
             {% elif notification.notification_type == 'application'  %}
-            <a href="{% url 'notification'  %}?goto=view_application&notification={{ notification.id }}&extra_id={{ notification.extra_id }}">
+            <a href="{% url 'notifications'  %}?goto=view_application&notification={{ notification.id }}&extra_id={{ notification.extra_id }}">
                 <strong>{{ notification.user.username }}</strong> Applied for a job. <br>
                 <small>{{ notification.timestamp }}</small>
             </a>
+            {% endif %}
         </p>
     </div>
 {% endfor %}

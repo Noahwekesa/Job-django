@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="site-section">
+    <div class="container">
+      <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
+        
+      <p>Contact Company: {{company.user.username}} </p>
+      
+  
+        <div class="form-group">
+          <label for="company-name">Company Name</label>
+          {{ company.name }}
+        </div>
+  
+        <div class="form-group">
+          <label for="company-tagline">Company established Year</label>
+        {{company.est_date}}
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Company Description</label>
+         {{company.description}}
+        </div>
+  
+        <div class="form-group">
+            <label for="description">Company Location</label>
+           {{company.city}}
+          </div>
+
+        <div class="form-group">
+          <label for="company-website">Website</label>
+          {{company.website}}
+        </div>
+  
+        <div class="form-group">
+          <label for="company-fb">Facebook Username (Optional)</label>
+
+        </div>
+  
+        <div class="form-group">
+          <label for="company-website-tw">Twitter Username (Optional)</label>
+ 
+        </div>
+    </div>
+  </section>
+  {% endblock  %}

@@ -18,8 +18,8 @@
             <p>{{company.city}}</p>
             
             <p class="card-text"> <small>{{ company.description }}</small></p>
-            {% comment %} <p class="card-text">{{ jobseeker.skills }}</p> {% endcomment %}
-            <a href="{% url 'view_profile'  %}" class="btn btn-info">View Company</a> 
+           
+            <a href="{% url 'view_company'  company.pk %}" class="btn btn-info">View Company</a> 
           </div>
         </div>
       {% empty %}
