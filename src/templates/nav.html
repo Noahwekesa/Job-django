@@ -5,7 +5,7 @@
 <header class="site-navbar mt-3">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="site-logo col-6 font-bold"><a href="{% url 'index' %}">JobPortal</a></div>
+        <div class="site-logo col-6 font-bold"><a href="{% url 'index' %}">KaziRecruiters</a></div>
   
         <nav class="mx-auto site-navigation">
           <ul style="margin-right: -500px" class="site-menu js-clone-nav d-inline d-xl-block ml-0 pl-0">
@@ -13,7 +13,7 @@
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
 
-            <li><a href="{% url 'job_listing' %}" >Apply to Jobs</a></li>
+            <li><a href="{% url 'job_listing' %}" >Available Jobs</a></li>
             {% if user.is_jobseeker %}
             <li><a href="{% url 'company-page'  %}">Companies hiring</a></li>
             {% elif user.is_employer %}

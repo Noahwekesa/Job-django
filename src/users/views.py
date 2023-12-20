@@ -64,6 +64,8 @@ def employer_signup(request):
 
 #login a user
 def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')

@@ -92,6 +92,7 @@ def job_details(request, pk):
 #     else:
 #         messages.info(request, 'Please login or register  as a jobseeker to apply for jobs')
 #         return redirect('login_page')
+
 def Apply_to_Job(request, pk):
     if request.user.is_authenticated and request.user.is_jobseeker:
         job = Job.objects.get(pk=pk)
