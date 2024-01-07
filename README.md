@@ -2,6 +2,10 @@
 
 Welcome to the Job Portal Web Application! This web application is built using Django, providing a platform for job seekers and employers to connect. It facilitates the process of job posting, job searching, and application submission.
 
+##### landing page
+
+![Landing image](https://github.com/Noahwekesa/Job-django/blob/master/screenshot/landingpage.png)
+
 ## Table of Contents
 
 - [Features](#features)
