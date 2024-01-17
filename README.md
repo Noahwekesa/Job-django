@@ -83,7 +83,7 @@ python manage.py migrate
 
 7. Create superuser
 
-```
+```sh
 python manage.py createsuperuser
 ```
 

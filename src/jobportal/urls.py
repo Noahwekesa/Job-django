@@ -36,51 +36,39 @@ urlpatterns = [
     path('employer_signup/', employer_signup, name='employer_signup'),
     path('login/', login_page, name='login_page'),
     path('login_out/', logout_page, name='logout_page'),
-    path ('dashboard/', dashboard, name='dashboard'),
-    path ('update_company/', update_company, name='update_company'),
-    path ('view_company/<int:pk>/', view_company, name='view_company'),
-    path ('create_profile/', update_profile, name='update_profile'),
-   
+    path('dashboard/', dashboard, name='dashboard'),
+    path('update_company/', update_company, name='update_company'),
+    path('view_company/<int:pk>/', view_company, name='view_company'),
+    path('create_profile/', update_profile, name='update_profile'),
     path('view_profile/', view_profile, name='view_profile'),
-
-    #create job
-    path ('create_job/', create_job, name='post-job'),
-
-    #update job
-    path ('update_job/<int:pk>/', update_job, name='update_job'),
-
-    #view job listing
-    path ('job_listing/', job_listing, name='job_listing'),
-    
-    #view job details
-    path ('job_details/<int:pk>/', job_details, name='job-details'),
-    
-    #manage job
-    path ('manage-job/', manage_job, name='manage-job'),
-
-    #apply to job
-    path ('<int:pk>/apply-to-job/', Apply_to_Job, name='apply-to-job'),
-    
-    #show all candidates
+    # create job
+    path('create_job/', create_job, name='post-job'),
+    # update job
+    path('update_job/<int:pk>/', update_job, name='update_job'),
+    # view job listing
+    path('job_listing/', job_listing, name='job_listing'),
+    # view job details
+    path('job_details/<int:pk>/', job_details, name='job-details'),
+    # manage job
+    path('manage-job/', manage_job, name='manage-job'),
+    # apply to job
+    path('<int:pk>/apply-to-job/', Apply_to_Job, name='apply-to-job'),
+    # show all candidates
     path('candidates_list/<int:pk>/', candidates_list, name='jobseekers'),
-
-    #applied jobs
-     path('applied-jobs/', applied_jobs, name='applied-jobs'),
-
-     #delete jobs
-     path ('job/<int:id>/', delete_job, name='delete-job'),
-
-     path('view-application/<int:applyjob_id>/', view_application, name='view_application'),
-
+    # applied jobs
+    path('applied-jobs/', applied_jobs, name='applied-jobs'),
+    # delete jobs
+    path('job/<int:id>/', delete_job, name='delete-job'),
+    path('view-application/<int:applyjob_id>/',
+         view_application, name='view_application'),
     path('jobseekers/', jobseekers_page, name='jobseekers-page'),
-
-    #all companies
-     path('companys/', company_page, name='company-page'),
-
-       path('notifications/', notifications, name='notifications'),
+    # all companies
+    path('companys/', company_page, name='company-page'),
+    path('notifications/', notifications, name='notifications'),
 
 ]
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,   document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

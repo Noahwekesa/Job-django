@@ -4,21 +4,10 @@
 {% load humanize %}
 {% block content %}
 {% load widget_tweaks %}
-{% include "nav.html" %}
-    <!-- HOME -->
-    <section class="home-section section-hero overlay bg-image" style="background-image: url({% static 'images/hero_1.jpg' %});" id="home-section">
-
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-12">
-            <div class="mb-5 text-center">
-              <h1 class="text-white font-weight-bold">Let's Find Jobs for You</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-            </div>
-
-
-
-            <form method="get" class="search-jobs-form">
+<div class="container">
+  <div class="mt-5">
+    <h2 class="text-center">Search for your dream job</h2>
+           <form method="get" class="search-jobs-form">
 
               <!--
                 job title, company name
@@ -27,7 +16,7 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   {% comment %} <input type="text" > {% endcomment %}
                   <label for="title">Job title</label>
-                  {% render_field filter.form.title class="form-control form-control-lg" placeholder="Job title..." %}
+                  {% render_field filter.form.title class="form-control form-control-lg shadow-lg" placeholder="Job title..." %}
                 </div>
 
             <!--
@@ -35,7 +24,8 @@
             -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <label for="location">Location</label>
-                  {% render_field filter.form.city class="form-control form-control-lg" placeholder="Location" %}
+                  {% render_field filter.form.city class="form-control form-control-lg  shadow-lg" placeholder="Location" %}
+
                 </div>
 
                 <!--
@@ -43,7 +33,7 @@
                 -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <label for="job_type">Job Type</label>
-                  {% render_field filter.form.job_type class="form-control form-control-lg" %}
+                  {% render_field filter.form.job_type class="form-control form-control-lg shadow-lg" %}
                 </div>
 
                 <!--
@@ -51,13 +41,13 @@
                 -->
                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <label for="industry">Industry</label>
-                  {% render_field filter.form.industry class="form-control form-control-lg" %}
+                  {% render_field filter.form.industry class="form-control form-control-lg shadow-lg" %}
                 </div> 
                 <!--
                   button
                 -->
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search shadow-lg"><span class="icon-search icon mr-2"></span>Search Job</button>
                 </div>
               </div>
               <div class="row">
@@ -71,192 +61,34 @@
                 </div>
               </div>
             </form>
+            </div>
 
-          </div>
-        </div>
-      </div>
-
-      <a href="#bottom" class="scroll-button smoothscroll">
-        <span class=" icon-keyboard_arrow_down"></span>
-      </a>
-
-    </section>
-    
-
-    <section class="py-4 site-section">
-      <div class="row mb-5 justify-content-center">
-        <div class="col-md-7 text-center">
-          <h2 class="section-title mb-2">Newest Jobs</h2>
-        </div>
-      </div>  
-    
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-     
+    <div class="container">
+      <h2 class="text-center">Newest Jobs</h2>
         {% for job in filter.qs %}
-        <div class="col">
-        <div class="card  h-100">
+
+  <div class="row">
+     <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card mb-5 shadow-lg" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title text-black">{{job.title}}</h5>
+            <h3 class="card-title">{{job.title}}</h3>
             <p class="card-text">Industry: {{job.industry}}</p>
             <p class="card-text">Job Type: {{job.job_type}}</p>
             <p class="card-text">Location: {{job.city}}</p>
             <p class="card-text">Salary: {{job.salary}}</p>
             <div class="card-footer">
+                <a href="#" class="card-link">View Job</a>
             <p class="card-text"><small class="text-mute">{{job.timestamp|naturaltime}}</small></p>
           </div>
         </div>
       </div>
-      </div>
+  </div>
+</div>
       {% empty %}
       <p class="text-blue"> No jobs found</p>
         {% endfor %}
-      </div>
 
-    </section>
-
-
-    <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url('{% static 'images/hero_1.jpg' %}');">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-            <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis recusandae sequi excepturi corrupti.</p>
-          </div>
-        </div>
-        <div class="row pb-0 block__19738 section-counter">
-
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="1930">0</strong>
-            </div>
-            <span class="caption">Candidates</span>
-          </div>
-
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="54">0</strong>
-            </div>
-            <span class="caption">Jobs Posted</span>
-          </div>
-
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="120">0</strong>
-            </div>
-            <span class="caption">Jobs Filled</span>
-          </div>
-
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="550">0</strong>
-            </div>
-            <span class="caption">Companies</span>
-          </div>
-
-            
-        </div>
-      </div>
-    </section>
-
-    <section class="site-section py-4">
-      <div class="container">
-  
-        <div class="row align-items-center">
-          <div class="col-12 text-center mt-4 mb-5">
-            <div class="row justify-content-center">
-              <div class="col-md-7">
-                <h2 class="section-title mb-2">Company We've Helped</h2>
-                <p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam fugit mollitia ipsum facilis expedita tempora suscipit iste</p>
-              </div>
-            </div>
-            
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_mailchimp.svg' %}" alt="Image" class="img-fluid logo-1">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_paypal.svg' %}" alt="Image" class="img-fluid logo-2">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_stripe.svg' %}" alt="Image" class="img-fluid logo-3">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_visa.svg' %}" alt="Image" class="img-fluid logo-4">
-          </div>
-
-      </div>
-    </section>
-
-    <section class="py-5 bg-image overlay-primary fixed overlay">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <h2 class="text-white">Ready to find your next job?</h2>
-            <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
-          </div>
-          <div class="col-md-3 ml-auto">
-            <a href="{% url 'login_page' %}" class="d-lg-inline border p-2 btn text-white">Find Your Future Job</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <div class="container">
-        <section class="bg-light pt-5 testimony-full">
-            <div class="owl-carousel single-carousel">
-                <!-- Block 1 -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <blockquote>
-                                <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
-                                <p><cite> &mdash; Corey Woods, @Dribbble</cite></p>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Block 2 -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <blockquote>
-                                <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
-                                <p><cite> &mdash; Chris Peters, @Google</cite></p>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Block 3 (Add two more blocks as needed) -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <blockquote>
-                                <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere atque sed saepe velit minus, exercitationem tempora, vel eveniet sint odit quidem est corrupti nam dignissimos reprehenderit distinctio doloremque tempore? Sequi!&rdquo;</p>
-                                <p><cite> &mdash; Elon musk, @Tesla</cite></p>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Block 4 (Add two more blocks as needed) -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <blockquote>
-                                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates vel aliquid accusantium alias consectetur, perferendis, pariatur tempora voluptatem quae error optio doloribus veritatis quod eum nemo aut! Accusamus, porro accusantium!&rdquo;</p>
-                                <p><cite> &mdash; Fumo Liyongo, @Netflix</cite></p>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
-  
-    
-  {% include "footer.html" %}
-    
+
+   </div> 
 {% endblock %}
