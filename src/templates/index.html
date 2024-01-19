@@ -7,7 +7,7 @@
 <div class="container">
   <div class="mt-5">
     <h2 class="text-center">Search for your dream job</h2>
-           <form method="get" class="search-jobs-form">
+          <form method="get" class="search-jobs-form">
 
               <!--
                 job title, company name
@@ -39,7 +39,7 @@
                 <!--
                   Industry
                 -->
-               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+              <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                 <label for="industry">Industry</label>
                   {% render_field filter.form.industry class="form-control form-control-lg shadow-lg" %}
                 </div> 
@@ -63,13 +63,13 @@
             </form>
             </div>
 
-    <div class="container">
       <h2 class="text-center">Newest Jobs</h2>
+      <div class="container">
+
+      <div class="row">
         {% for job in filter.qs %}
 
-  <div class="row">
-     <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card mb-5 shadow-lg" style="width: 18rem;">
+      <div class="col-sm-6 mb-3 mb-sm-0">        <div class="card shadow-lg" >
           <div class="card-body">
             <h3 class="card-title">{{job.title}}</h3>
             <p class="card-text">Industry: {{job.industry}}</p>
@@ -77,18 +77,16 @@
             <p class="card-text">Location: {{job.city}}</p>
             <p class="card-text">Salary: {{job.salary}}</p>
             <div class="card-footer">
-                <a href="#" class="card-link">View Job</a>
+                <a href="{%  url 'job-details' job.pk %}" class="card-link">View Job</a>
             <p class="card-text"><small class="text-mute">{{job.timestamp|naturaltime}}</small></p>
           </div>
         </div>
       </div>
-  </div>
-</div>
+  </div> 
       {% empty %}
-      <p class="text-blue"> No jobs found</p>
+      <p class="text-center"> No jobs found</p>
         {% endfor %}
-
+</div>
     </div>
 
-   </div> 
 {% endblock %}
